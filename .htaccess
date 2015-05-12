@@ -1,0 +1,12 @@
+Options +FollowSymLinks
+
+RewriteEngine on 
+RewriteCond %{HTTP_HOST} ^mvlcreatie.nl [NC] 
+RewriteRule ^(.*)$ http://taskmgr.mvlcreatie.nl/$1 [R=301,L]
+
+RewriteRule ^([A-Za-z0-9-]+)/?$ index.php?var1=$1
+RewriteRule ^([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/?$ index.php?var1=$1&var2=$2
+RewriteRule ^([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/?$ index.php?var1=$1&var2=$2&var3=$3
+RewriteRule ^([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/?$ index.php?var1=$1&var2=$2&var3=$3&var4=$4
+RewriteRule ^([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/?$ index.php?var1=$1&var2=$2&var3=$3&var4=$4&var5=$5
+RewriteRule ^([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/?$ index.php?var1=$1&var2=$2&var3=$3&var4=$4&var5=$5&var6=$6

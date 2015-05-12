@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<title>Team</title>
+	<body>
+		<script language="javascript">
+		function addSubTeamDropDown(tableData){ 
+            var table = document.getElementById(tableData);
+            var rowCount = table.rows.length;
+            var row = table.insertRow(rowCount);
+            var newcell = row.insertCell(0);
+ 			newcell.innerHTML = table.rows[rowCount-1].innerHTML;
+		}
+		function removeSubTeamDropDown(tableData){
+			var table = document.getElementById(tableData);
+			var rowCount = table.rows.length;
+			table.deleteRow(rowCount-1);
+		}
+		</script>
+		<h2>
+			Welkom: Rene Mondriaan (Teamleider ICT) 
+		</h2>
+		<center>
+			<div id="teamForm">
+					<table id="teamFormTable">
+						<thead>
+							<tr>
+								<th>
+									Team toevoegen
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<input type="text" placeholder="Teamnaam" name="Teamnaam"></input>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<input type="text" placeholder="Crebo-nummer" name="Crebo-nummer"></input>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<select>
+										<option selected="selected">
+											Kies de teamleider											
+										</option>
+										<option value="HUE">
+											HUE
+										</option>
+										<option value="BNR">
+											BNR
+										</option>
+										<option value="BDH">
+											BDH
+										</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<select>
+										<option selected="selected">
+											Kies een subteam											
+										</option>
+										<option value="Applicatie Ontwikkelaar">
+											Applicatie Ontwikkelaar
+										</option>
+										<option value="Media Vormgever">
+											Media Vormgever
+										</option>
+										<option value="Elektrotechniek">
+											Elektrotechniek
+										</option>
+									</select>
+									<button onclick="addSubTeamDropDown('teamFormTable')">+</button>
+									<button onclick="removeSubTeamDropDown('teamFormTable')">-</button>	
+								</td>	
+							</tr>
+						</tbody>
+					</table>
+					<input name="opslaan" value="opslaan" type="submit">
+			</div>
+		</center>
+		<div id="teamOverzicht">
+			<h2>
+				Overzicht Teams
+			</h2>
+			<table border=1>
+				<tbody>
+					<tr>
+						<th>Teamnaam</th>
+						<th>Teamleider</th>
+						<th>Subteams</th>
+						<th>Wijzigen</th>
+						<th>Archiveren</th>
+					</tr>
+					<tr>
+						<td>ICT</td>
+						<td>Bryan</td>
+						<td>Applicatie Ontwikkelaar, Game Ontwikkelaar</td>
+						<td><button type="">Wijzigen</button></td>
+						<td><button type="">archiveren</button></td>	
+					</tr>
+					<tr>
+						<td>Techniek</td>
+						<td>Henkie</td>
+						<td>Elektrotechniek, Metaalbewerking</td>
+						<td><button type="">Wijzigen</button></td>
+						<td><button type="">archiveren</button></td>	
+					</tr>
+					<tr>
+						<td>Uniformberoepen</td>
+						<td>Tom</td>
+						<td>Landmacht, Politie, Luchtmacht</td>
+						<td><button type="">Wijzigen</button></td>
+						<td><button type="">archiveren</button></td>	
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>
