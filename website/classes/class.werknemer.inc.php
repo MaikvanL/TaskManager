@@ -9,36 +9,22 @@ class Werknemer extends Database {
 	public function maakGebruiker($data){
 		//zet $data om in vars.
 		//$id = auto increment
-		$aanhef1=mysql_real_escape_string($data['aanhef']);
-		$voorletters1=mysql_real_escape_string($data['voorletters']);
-		$voornaam1=mysql_real_escape_string($data['voornaam']);
-		$tussenvoegsel1=mysql_real_escape_string($data['tussenvoegsel']);
-		$achternaam1=mysql_real_escape_string($data['achternaam']);
-		$straat1=mysql_real_escape_string($data['straat']);
-		$huisnummer1=mysql_real_escape_string($data['huisnummer']);
-		$woonplaats1=mysql_real_escape_string($data['woonplaats']);
-		$postcode1=mysql_real_escape_string($data['postcode']); 
-		$email1=mysql_real_escape_string($data['emailadres']);
-		$indienst1=mysql_real_escape_string($data['indienstneming']);
-		$wtf1=mysql_real_escape_string($data['werktijdfactor']);
-		$functie1=mysql_real_escape_string($data['functie']);
-		$wachtwoord1=mysql_real_escape_string($data['wachtwoord']);
+		$aanhef=mysql_real_escape_string($data['aanhef']);
+		$voorletters=mysql_real_escape_string($data['voorletters']);
+		$voornaam=mysql_real_escape_string($data['voornaam']);
+		$tussenvoegsel=mysql_real_escape_string($data['tussenvoegsel']);
+		$achternaam=mysql_real_escape_string($data['achternaam']);
+		$straat=mysql_real_escape_string($data['straat']);
+		$huisnummer=mysql_real_escape_string($data['huisnummer']);
+		$woonplaats=mysql_real_escape_string($data['woonplaats']);
+		$postcode=mysql_real_escape_string($data['postcode']);
+		$email=mysql_real_escape_string($data['emailadres']);
+		$indienst=mysql_real_escape_string($data['indienstneming']);
+		$wtf=mysql_real_escape_string($data['werktijdfactor']);
+		$functie=mysql_real_escape_string($data['functie']);
+		$wachtwoord=mysql_real_escape_string($data['wachtwoord']);
 		
-		
-		$aanhef=htmlspecialchars($aanhef1);
-		$voorletters=htmlspecialchars($voorletters1);
-		$voornaam=htmlspecialchars($voornaam1);
-		$tussenvoegsel=htmlspecialchars($tussenvoegsel1);
-		$achternaam=htmlspecialchars($achternaam1);
-		$straat=htmlspecialchars($straat1);
-		$huisnummer=htmlspecialchars($huisnummer1);
-		$woonplaats=htmlspecialchars($woonplaats1);
-		$postcode=htmlspecialchars($postcode1);
-		$email=htmlspecialchars($email1);
-		$indienst=htmlspecialchars($indienst1);
-		$wtf=htmlspecialchars($wtf1);
-		$functie=htmlspecialchars($functie1);
-		$wachtwoord=htmlspecialchars($wachtwoord1);
+
 
         $document = new document();
         $convertedDate = $document->convertToSQLdate($indienst);
@@ -85,20 +71,20 @@ class Werknemer extends Database {
 	}
 
 	public function wijzigGebruiker($data){
-		$aanhef			=	$data['aanhef'];
-		$voorletters	=	$data['voorletters'];
-		$voornaam		=	$data['voornaam'];
-		$tussenvoegsel	=	$data['tussenvoegsel'];
-		$achternaam		=	$data['achternaam'];
-		$straat			=	$data['straat'];
-		$huisnummer		=	$data['huisnummer'];
-		$woonplaats		=	$data['woonplaats'];
-		$postcode		=	$data['postcode']; 
-		$email			=	$data['emailadres'];
-		$indienst		=	$data['indienstneming'];
-		$wtf			=	$data['werktijdfactor'];
-		$functie		=	$data['functie'];
-		$id				=	$data['id'];
+		$aanhef			=	mysql_real_escape_string($data['aanhef']);
+		$voorletters	=	mysql_real_escape_string($data['voorletters']);
+		$voornaam		=	mysql_real_escape_string($data['voornaam']);
+		$tussenvoegsel	=	mysql_real_escape_string($data['tussenvoegsel']);
+		$achternaam		=	mysql_real_escape_string($data['achternaam']);
+		$straat			=	mysql_real_escape_string($data['straat']);
+		$huisnummer		=	mysql_real_escape_string($data['huisnummer']);
+		$woonplaats		=	mysql_real_escape_string($data['woonplaats']);
+		$postcode		=	mysql_real_escape_string($data['postcode']);
+		$email			=	mysql_real_escape_string($data['emailadres']);
+		$indienst		=	mysql_real_escape_string($data['indienstneming']);
+		$wtf			=	mysql_real_escape_string($data['werktijdfactor']);
+		$functie		=	mysql_real_escape_string($data['functie']);
+		$id				=	mysql_real_escape_string($data['id']);
 
         $document = new document();
         $convertedDate = $document->convertToSQLdate($indienst);
