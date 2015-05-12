@@ -17,7 +17,7 @@
 			<div class="row">
 				<div class="col-md-4">
 					<h3 style="margin:0px;">Opdrachtgever</h3>
-					<h4 style="margin:0px;">Bram van Huele</h4>
+					<h4 style="margin:0px;">Brum van Huele</h4>
 					<h5 style="margin:0px;">Scalda College voor Techniek en Design</h5>
 					<h6>Edisonweg, Vlissingen</h6>
 				</div>
