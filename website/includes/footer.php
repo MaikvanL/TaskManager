@@ -28,8 +28,8 @@
 				</div>
 				<div class="col-md-4">
 					<h3 style="margin-top:0px;">Projectgroep</h3>
-					<h5>Maik van Lieshout, Huberto van den Hoven </h5>
-					<h6>Jeremy Muller, Jochem van Boven, Bryan den Hollander, Kevin Geertse, Elroy van Noort, Ivo Spoor</h6>
+					<h5>Maik van Lieshout, Glenn Louwerse </h5>
+					<h6>Huberto van den Hoven, Jeremy Muller, Jochem van Boven, Bryan den Hollander, Kevin Geertse, Elroy van Noort, Ivo Spoor</h6>
 			</div>
 		</div>
 	</div>
