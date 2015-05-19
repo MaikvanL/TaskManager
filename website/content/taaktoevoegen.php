@@ -3,7 +3,7 @@ define("PAGINA_TITEL"		,	"Taaktoevoegen");
 define("PAGINA_NAAM"		,	"taaktoevoegen");
 define("PAGINA_CATEGORIE"	, 	"taken");
 define("USER_LEVEL", 4);
-include(ROOT_WEBSITE."includes/header.php");	
+include(ROOT_WEBSITE."includes/header.php");
 $session = $_SESSION['userlevel'];
 $userId  = $_SESSION['id'];
 $document = new document();
@@ -17,7 +17,19 @@ $document->open_body();
 $document->checkUserlevel($session, USER_LEVEL);
 
 $subteam = new subteam();
+$taak = new Taak();
 $subteams=$subteam->overzicht();
+if (isset($_POST['naam'])){
+    $addTaak = $taak->add($_POST);
+    if (!$addTaak){
+        $document->failed('Taak','toegevoegd');
+    }
+    else {
+        $document->success('Taak', 'toegevoegd');
+    }
+
+}
+
 
 ?>
 
@@ -30,7 +42,7 @@ $subteams=$subteam->overzicht();
 			<div class="row">
 				<div class="col-md-7">
 						<legend>Taak toevoegen aan subteam</legend>
-					<form>
+					<form method="post">
 						<div class="row">
 							<div class="col-md-10">
 								<label>Categorie</label>

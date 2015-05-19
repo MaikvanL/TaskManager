@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="On explicit save action" serverName="MvLC" uploadOnCheckin="9467ce8a-b219-4053-9d89-487d41b63667" autoUploadExternalChanges="true">
-    <option name="myUploadOnCheckinName" value="Project" />
+  <component name="PublishConfigData" autoUpload="On explicit save action" serverName="MvLC" autoUploadExternalChanges="true">
     <option name="myAutoUpload" value="ON_EXPLICIT_SAVE" />
   </component>
 </project>
