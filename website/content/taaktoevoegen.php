@@ -87,16 +87,16 @@ $subteams=$subteam->overzicht();
 <script>
     $(".subteamselect").select2();
 
-    $(function() {
-        var spinner = $( "#klokuren" ).spinner();
-
-    $("#klokuren").click(function){
-        if( spinner.spinner( "option", "disabled" ) ) {
-            spinner.spinner( "enable" );
-        } else {
-            spinner.spinner( "disable" );
-        }
-    });
+//    $(function() {
+//        var spinner = $( "#klokuren").spinner();
+//
+//    $("#klokuren").onload(function){
+//        if( spinner.spinner( "option", "disabled" ) ) {
+//            spinner.spinner( "enable" );
+//        } else {
+//            spinner.spinner( "disable" );
+//        }
+//    });
 
 
     $("#lesuren")
