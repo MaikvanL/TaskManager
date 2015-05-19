@@ -31,23 +31,16 @@ $subteams=$subteam->overzicht();
 				<div class="col-md-7">
 						<legend>Taak toevoegen aan subteam</legend>
 					<form>
-						<div class="row">
-							<div class="col-md-10">
-								<label>Categorie</label>
-                                <!-- Hier moet een foreach loop komen met de categorieën die later beheerbaar gemaakt zullen worden, tot die tijd handmatig invullen -->
-								<input type="text" class="form-control" name="categorie" id="categorie" placeholder="Naam">
-							</div>
-						</div>
+                        <div class="row">
+                            <div class="col-md-10">
+                                <label>Naam</label>
+                                <input type="text" class="form-control" name="naam" id="naam" placeholder="Naam">
+                            </div>
+                        </div>
 						<div class="row">
 							<div class="col-md-10">
 								<label>Code</label>
-								<input type="text" class="form-control" name="code" id="code" placeholder="code">		
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-10">
-								<label>Naam</label>
-								<input type="text" class="form-control" name="naam" id="naam" placeholder="Naam">		
+								<input type="text" class="form-control" name="code" id="code" placeholder="Code">
 							</div>
 						</div>
 						<div class="row">
@@ -56,6 +49,13 @@ $subteams=$subteam->overzicht();
 								<input type="text" class="form-control" name="omschrijving" id="omschrijving" placeholder="Omschrijving">		
 							</div>
 						</div>
+                        <div class="row">
+                            <div class="col-md-10">
+                                <label>Categorie</label>
+                                <!-- Hier moet een foreach loop komen met de categorieën die later beheerbaar gemaakt zullen worden, tot die tijd handmatig invullen -->
+                                <input type="text" class="form-control" name="categorie" id="categorie" placeholder="Naam">
+                            </div>
+                        </div>
 						<div class="row">
 							<div class="col-md-5">
 								<label>Klokuren</label>
@@ -68,8 +68,8 @@ $subteams=$subteam->overzicht();
 						</div>	
 						</div>
 						<div class="col-md-5">
-							<legend>Subteams</legend>
-							<select multiple="multiple" name="subteam" class="subteamselect" style="width:250px;">
+							<legend>Subteam</legend>
+							<select name="subteam" class="subteamselect" style="width:250px;">
 							<?  foreach ($subteams as $row){?>		
 								<option id="<?=$row->id?>" value="<?=$row->id?>"><?=$row->subteamnaam?></option>
 							<?}?>
@@ -84,7 +84,26 @@ $subteams=$subteam->overzicht();
 		</div><!--einde content-->
 	</div>
 </div>
-<script>$(".subteamselect").select2();</script>
+<script>
+    $(".subteamselect").select2();
+
+    $(function() {
+        var spinner = $( "#klokuren" ).spinner();
+
+    $("#klokuren").click(function){
+        if( spinner.spinner( "option", "disabled" ) ) {
+            spinner.spinner( "enable" );
+        } else {
+            spinner.spinner( "disable" );
+        }
+    });
+
+
+    $("#lesuren")
+
+
+
+</script>
 <style> .subteamselect { min-height:295px; } </style>
 <? 
 include(ROOT_WEBSITE."includes/footer.php");
