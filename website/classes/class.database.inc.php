@@ -6,10 +6,10 @@
 
 class dbNew {
 
-    private db_host = DB_HOSTNAME;
-    private db_user = DB_USERNAME;
-    private db_pass = DB_PASSWORD;
-    private db_name = DB_DATABASE;
+    private $db_host = DB_HOSTNAME;
+    private $db_user = DB_USERNAME;
+    private $db_pass = DB_PASSWORD;
+    private $db_name = DB_DATABASE;
 
     private $con = false; // Check of er al verbinding is met de database
     private $result = array(); // Result van de query

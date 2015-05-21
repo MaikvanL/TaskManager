@@ -88,6 +88,7 @@ $subteams=$subteam->overzicht();
     $(".subteamselect").select2();
     $(function() {
         var spinner = $( "#klokuren").spinner();
+        var spinner2 = $( "#lesuren").spinner();
 
     });
 
