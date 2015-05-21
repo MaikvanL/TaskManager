@@ -59,11 +59,11 @@ $subteams=$subteam->overzicht();
 						<div class="row">
 							<div class="col-md-5">
 								<label>Klokuren</label>
-								<input type="text" class="form-control" name="klokuren" id="klokuren" placeholder="Klokuren">		
+								<input type="number" class="form-control" name="klokuren" id="klokuren" placeholder="Klokuren">
 							</div>
 							<div class="col-md-5">
 								<label>Lesuren</label>
-								<input type="text" class="form-control" name="lesuren" id="lesuren" placeholder="Lesuren">		
+								<input type="number" class="form-control" name="lesuren" id="lesuren" placeholder="Lesuren">
 							</div>
 						</div>	
 						</div>
@@ -87,17 +87,16 @@ $subteams=$subteam->overzicht();
 <script>
     $(".subteamselect").select2();
 
-//    $(function() {
-//        var spinner = $( "#klokuren").spinner();
-//
-//    $("#klokuren").onload(function){
-//        if( spinner.spinner( "option", "disabled" ) ) {
-//            spinner.spinner( "enable" );
-//        } else {
-//            spinner.spinner( "disable" );
-//        }
-//    });
+    $(function() {
+        var spinner = $( "#klokuren").spinner();
 
+    $("#klokuren").onload(function){
+        if( spinner.spinner( "option", "disabled" ) ) {
+            spinner.spinner( "enable" );
+        } else {
+            spinner.spinner( "disable" );
+        }
+    });
 
     $("#lesuren")
 
