@@ -81,7 +81,7 @@ $subteams=$subteam->overzicht();
 					</form>
 				</div>
 			</div>
-		</div><!--einde content-->
+		</div>
 	</div>
 </div>
 <script>
