@@ -86,19 +86,12 @@ $subteams=$subteam->overzicht();
 </div>
 <script>
     $(".subteamselect").select2();
-
     $(function() {
         var spinner = $( "#klokuren").spinner();
 
-    $("#klokuren").onload(function){
-        if( spinner.spinner( "option", "disabled" ) ) {
-            spinner.spinner( "enable" );
-        } else {
-            spinner.spinner( "disable" );
-        }
     });
 
-    $("#lesuren")
+
 
 
 
