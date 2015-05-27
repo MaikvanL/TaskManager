@@ -93,9 +93,9 @@ if (isset($_POST['aanhef'])){
 			  		<div class="col-md-4">
 					    <select class="form-control" name="functie">
 					    	<option>- Selecteer je functie</option>
-					    	<option value="Docent" <? if ($row->functie=="Docent"){ ?>selected<? } ?>>Docent</option>
-					    	<option value="Teamleider" <? if ($row->functie=="Teamleider"){ ?>selected<? } ?>>Teamleider</option>
-					    	<option value="Opleidingverantwoordelijke" <? if ($row->functie=="Opleidingverantwoordelijke"){ ?>selected<? } ?>>Opleidingverantwoordelijke</option>
+					    	<option value="Docent" <? if ($row['functie']=="Docent"){ ?>selected<? } ?>>Docent</option>
+					    	<option value="Teamleider" <? if ($row['functie']=="Teamleider"){ ?>selected<? } ?>>Teamleider</option>
+					    	<option value="Opleidingverantwoordelijke" <? if ($row['functie']=="Opleidingverantwoordelijke"){ ?>selected<? } ?>>Opleidingverantwoordelijke</option>
 					    </select>
 			  		</div>
 			  		<div class="col-md-2">

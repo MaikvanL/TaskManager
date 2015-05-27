@@ -1,8 +1,8 @@
 <?php
 
-class Taak extends Database {
+class Taak {
     public function add($data){
-        $db = new dbNew();
+        $db = new Database();
 
         $subteam        =   $db->escapeString($data['subteam']);
         $code           =   $db->escapeString($data['code']);
@@ -18,7 +18,7 @@ class Taak extends Database {
 
     }
     public function edit($data){
-        $db = new dbNew();
+        $db = new Database();
 
         $id             =   $db->escapeString($data['id']);
         $subteam        =   $db->escapeString($data['subteam']);
@@ -30,13 +30,12 @@ class Taak extends Database {
         $lesuren        =   $db->escapeString($data['lesuren']);
 
         $db->connect();
-        $db->update('taken',array('subteam'=>$subteam,'code'=>$code,'soort'=>$soort,'naam'=>$naam, 'beschrijving'=>$beschrijving,'klokuren'=>$klokuren,'lesuren'=>$lesuren),'id = $id');
-        $db->disconnect();
+        $db->update('taken',array('subteam'=>$subteam,'code'=>$code,'soort'=>$soort,'naam'=>$naam, 'beschrijving'=>$beschrijving,'klokuren'=>$klokuren,'lesuren'=>$lesuren),'id = '.$id);
 
     }
     public function delete($taskid){
-        $db = new dbNew();
-        $query = "DELETE * FROM `taken` WHERE `id`= $taskid";
-        $this->query($query);
+        $db = new Database();
+        $db->connect();
+        $db->delete('taken','`id` = '.$taskid);
     }
 }

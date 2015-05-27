@@ -35,13 +35,13 @@ foreach ($huidigsubteam as $row) {
 					<h3>Subteam Informatie</h3>
                     <hr>
                     <table>
-					<tr><td>Naam:</td><td><?=$row->subteamnaam?></td></tr>
+					<tr><td>Naam:</td><td><?=$row['subteamnaam']?></td></tr>
                     <tr><td>Subteamleider: </td>
                         <td><?
                             $werknemer = new werknemer();
-                            $olv = $werknemer->getGebruiker($row->idopleidingsverantwoordelijke);
+                            $olv = $werknemer->getGebruiker($row['idopleidingsverantwoordelijke']);
                             foreach ($olv as $verantwoordelijke) {
-                                print ($verantwoordelijke->voornaam.' '.$verantwoordelijke->tussenvoegsel.' '.$verantwoordelijke->achternaam);
+                                print ($verantwoordelijke['voornaam'].' '.$verantwoordelijke['tussenvoegsel'].' '.$verantwoordelijke['achternaam']);
                             }
                             ?></td></tr>
                     </table>
@@ -51,13 +51,13 @@ foreach ($huidigsubteam as $row) {
                     <div class="row">
                         <table class="col-md-12">
                         <?
-                            $leden = $subteam->getWerknemers($row->id);
+                            $leden = $subteam->getWerknemers($row['id']);
                             foreach ($leden as $subteamlid) {
                                 ?>
 
                             <tr class="row">
-                                <td class="col-md-9"><?=$subteamlid->id?> <?=$subteamlid->voornaam?> <?=$subteamlid->tussenvoegsel?> <?=$subteamlid->achternaam?></td>
-                                <td class="col-md-3"><a href="<?=HTTP?>gebruikerswijzigen/<?=$subteamlid->werknemerid?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                                <td class="col-md-9"><?=$subteamlid['id']?> <?=$subteamlid['voornaam']?> <?=$subteamlid['tussenvoegsel']?> <?=$subteamlid['achternaam']?></td>
+                                <td class="col-md-3"><a href="<?=HTTP?>gebruikerswijzigen/<?=$subteamlid['werknemerid']?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
                             </tr>
 
                         <?  } ?>

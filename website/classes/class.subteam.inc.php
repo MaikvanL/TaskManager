@@ -1,64 +1,46 @@
 <?php
 
 /**
-* Class voor Team.
+ * Class voor Team.
+ * Revision 2
+ * Author: Maik van Lieshout
 */
-class Subteam extends Database {
+class Subteam {
 
 	private $id;
 	private $subteamnaam;
 	private $idteamleider;
 	private $idolv;  
 	private $iddocent;
-//FUNCTIE OM SUBTEAM TE MAKEN
+
 	public function maakSubteam($data){
-
-		$subteamnaam1=mysql_real_escape_string($data['subteamnaam']);
-		$idopleidingsverantwoordelijke1=mysqlcd_real_escape_string($data['opleidingsverantwoordelijke']);
-		$idteam1=mysql_real_escape_string($data['idteam']);
-	
-		$subteam=htmlspecialchars($subteamnaam1);
-		$idopleidingsverantwoordelijke=htmlspecialchars($idopleidingsverantwoordelijke1);
-		$idteam=htmlspecialchars($idteam1);
-		
-		$query="INSERT INTO `subteam`(
-			`subteamnaam`,
-			`idteam`,
-			`idopleidingsverantwoordelijke`,
-			`actief`)
-      Values(
-			`$subteam`,
-			`$idteam`,
-			`$idopleidingsverantwoordelijke`,
-			`1`)";
+        $db = new Database();
 
 
-			
-		$this->query($query); 
-	}
-//FUNCTIE OM SUBTEAM TE WIJZIGEN
+		$subteam    = $db->escapeString($data['naam']);
+		$idolv      = $db->escapeString($data['olv']);
+		$idteam     = $db->escapeString($data['team']);
+
+        $tabelinfo  = ['subteamnaam'=>$subteam,'idteam'=>$idteam,'idopleidingsverantwoordelijke'=>$idolv,'actief'=>1];
+        $db->connect();
+        $db->insert('subteam',$tabelinfo);
+
+    }
+
 	public function wijzigSubteam($data){
+        $db = new Database();
 
-		$id=$data['id'];	
-		$subteamnaam1=mysql_real_escape_string($data['subteamnaam']);
-		$idopleidingsverantwoordelijke1=mysql_real_escape_string($data['idteamleider']);
-		$idteam1=mysql_real_escape_string($data['idteam']);
+        $id     = $db->escapeString($data['id']);
+        $naam   = $db->escapeString($data['naam']);
+        $idolv  = $db->escapeString($data['olv']);
+        $idteam = $db->escapeString($data['idteam']);
 
-		$subteam=htmlspecialchars($subteamnaam1);
-		$idopleidingsverantwoordelijke=htmlspecialchars($idopleidingsverantwoordelijke1);
-		$idteam=htmlspecialchars($idteam1);
-		
-		$query = ("UPDATE `subteam` SET 
-		`subteamnaam`	 				='$subteamnaam',
-		`idteamleider`   				='$idteamleider',
-		`idopleidingsverantwoordelijke` ='$idolv',
-		WHERE`id`=$id;");
-
-		$this->query($query);
+        $db->connect();
+        $db->update('subteam',['subteamnaam'=>$naam,'idteamleider'=>$idolv,'idteam'=>$idteam],'id = '.$id);
 
 	}
-//SUBTEAM ARCHIVERNE NIET VERWIJDEREN!
-	public function archiveerSubteam($id){
+
+/*	public function archiveerSubteam($id){
 		$sql="SELECT `actief` FROM `subteam` WHERE `id`=$id";	
 		$result=$this->query($sql);
 		foreach($result as $result)
@@ -79,98 +61,98 @@ class Subteam extends Database {
 		}
 
 		return $melding;
-	}
+	}*/
 
 	public function overzicht(){
-		$sql ="SELECT * from `subteam` ";
-		return $this -> query($sql);
+        $db = new Database();
+        $db->connect();
+        return $db->select('subteam');
 	}
 
-
-
-	public function alleOLV(){
-		$sql ="SELECT * from `olv`";
-			return $this->query($sql);
-	}
-			
 	public function alleTeams(){
-	$sql = "SELECT * from `team`";
-			return $this->query($sql);
-
+        $db = new Database();
+        $db->connect();
+        return $db->select('team');
 	}
 
-	public function voegDocent ($werknemerid, $subteamid){
-		 $sql="SELECT * FROM `subteamdocenten` WHERE `werknemerid`= $werknemerid AND `subteamid`= $subteamid";
-		$result=$this->query($sql);
-		
-		$result=count($result);
-		
+    /*	public function voegDocent ($werknemerid, $subteamid){
+             $sql="SELECT * FROM `subteamdocenten` WHERE `werknemerid`= $werknemerid AND `subteamid`= $subteamid";
+            $result=$this->query($sql);
 
-		if($result==0){
-		$sql = "INSERT INTO `subteamdocenten`(`subteamid`, `werknemerid`) VALUES ($subteamid, $werknemerid)";
-		$this->query($sql);
-		
-		return "Docent is opgeslagen";
-		}
-
-		if ($result>=1) {
-		return "Docent bestaat al";
-		}
-	}
-
-	public function verplaatsDocent($werknemerid, $oldsubteamid, $newsubteamid){
-		$sql="SELECT * FROM `subteamdocenten` WHERE `werknemerid`= $werknemerid AND `subteamid`= $newsubteamid";
-		$this->query($sql);
-		$result=count($result);
-		
-
-		if($result==0){
-		$this->verwijderDocent($werknemerid,$oldsubteamid);
-		$sql = "INSERT INTO `subteamdocenten`(`subteamid`, `werknemerid`) VALUES ($newsubteamid, $werknemerid)";
-		$this->query($sql);
-		
-		return "Docent is opgeslagen";
-		}
-
-		if ($result>=1) {
-		return "Docent bestaat al";
-		}
+            $result=count($result);
 
 
-	}
+            if($result==0){
+            $sql = "INSERT INTO `subteamdocenten`(`subteamid`, `werknemerid`) VALUES ($subteamid, $werknemerid)";
+            $this->query($sql);
+
+            return "Docent is opgeslagen";
+            }
+
+            if ($result>=1) {
+            return "Docent bestaat al";
+            }
+        }*/
 
 
     public function getWerknemers($subteamid){
-        $sql="SELECT werknemer.*, subteamdocenten.* FROM werknemer INNER JOIN subteamdocenten WHERE subteamdocenten.subteamid = $subteamid AND subteamdocenten.werknemerid = werknemer.id";
-        $subteamdocenten = $this->query($sql);
-        return $subteamdocenten;
+        $db = new Database();
+        $db->connect();
+
+        $sql='SELECT werknemer.*, subteamdocenten.* FROM werknemer INNER JOIN subteamdocenten WHERE subteamdocenten.subteamid = $subteamid AND subteamdocenten.werknemerid = werknemer.id';
+        $db->myQuery = $sql;
+        $query = @mysql_query($sql);
+        if($query){
+            $this->numResults = mysql_num_rows($query);
+            for($i = 0; $i < $db->numResults; $i++){
+                $r = mysql_fetch_array($query);
+                $key = array_keys($r);
+                for($x = 0; $x < count($key); $x++){
+                    if(!is_int($key[$x])){
+                        if(mysql_num_rows($query) >= 1){
+                            $db->result[$i][$key[$x]] = $r[$key[$x]];
+                        }else{
+                            $db->result = null;
+                        }
+                    }
+                }
+            }
+            return true;
+        }else{
+            array_push($db->result,mysql_error());
+            return false; // Geen rows gereturnd
+        }
+
     }
 	public function verwijderDocent($werknemerid, $subteamid){
-		$sql="DELETE * FROM `subteamdocenten` WHERE `werknemerid`= $werknemerid AND `subteamid`= $subteamid";
-		$this->query($sql);
+        $db = new Database();
+        $db->connect();
+        $db->delete('subteamdocenten', '`werknemerid`= '.$werknemerid.' AND `subteamid` = '.$subteamid);
 
 		return "Docent verwijderd";
 	}
 
-	public function getSubTeamByLeader($userId){
+/*	public function getSubTeamByLeader($userId){
 		$sql = "SELECT * FROM `team` WHERE `idteamleider` = $userId";
 		$team=$this->query($sql);
 		foreach ($team as $row) {
 		$subteams= $this->getSubteams($row->id);
 		}
 		return $subteams;
-	}
+	}*/
 		
     public function getSubteam($subteamid){
-        $sql = "SELECT * FROM `subteam` WHERE `id` = $subteamid";
-
-        return $this->query($sql);
+        $db = new Database();
+        $db->connect();
+        return $db->select('subteam',null,null,'`id` = '.$subteamid);
     }
 
     public function addWerknemer($werknemerid, $subteamid){
-        $sql = "INSERT INTO `subteamdocenten`(`subteamid`, `werknemerid`) VALUES ($subteamid,$werknemerid)";
 
-        $this->query($sql);
+        $db = new Database();
+        $db->connect();
+        $db->insert('subteamdocenten',['subteamid'=>$subteamid,'werknemerid'=>$werknemerid]);
+
     }
 
     public function checkNotInSubteam($allUsers, $leden){

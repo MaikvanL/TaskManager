@@ -41,15 +41,15 @@ $teamresult = $team->alleTeams();
 			    <label for="naam">Naam</label>
 			    <div class="row">
 			    	<div class="col-md-12">
-					    <input type="text" class="form-control" name="subteamnaam" id="subteamnaam" placeholder="Subteamnaam">
+					    <input type="text" class="form-control" name="naam" id="naam" placeholder="Subteamnaam">
 			    	</div>
 			    </div>
-			    <label for="afdelingverantwoordelijke">Afdelingverantwoordelijke</label>
+			    <label for="olv">Opleidingsverantwoordelijke</label>
 			    <div class="row">
 			    	<div class="col-md-12">
-					    <select class="form-control" name="afdelingverantwoordelijke" id="afdelingverantwoordelijke" placeholder="Afdelingverantwoordelijke">
+					    <select class="form-control" name="olv" id="olv" placeholder="Afdelingverantwoordelijke">
 						    <? foreach ($result as $row) { ?> 
-					    	<option value="<?=$row->id?>"><?=$row->voornaam?> <?=$row->tussenvoegsel?> <?=$row->achternaam?></option>
+					    	<option value="<?=$row['id']?>"><?=$row['voornaam']?> <?=$row['tussenvoegsel']?> <?=$row['achternaam']?></option>
 					    	<? } ?>
 					    </select>
 			    	</div>
@@ -59,7 +59,7 @@ $teamresult = $team->alleTeams();
 			    	<div class="col-md-12">
 					    <select class="form-control" name="team" id="team" placeholder="Team">
 						    <? foreach ($teamresult as $teamrow) { ?> 
-					    	<option value="<?=$teamrow->id?>"><?=$teamrow->teamnaam?></option>
+					    	<option value="<?=$teamrow['id']?>"><?=$teamrow['teamnaam']?></option>
 					    	<? } ?>
 					    </select>
 			    	</div>

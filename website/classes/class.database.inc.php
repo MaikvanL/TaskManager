@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Class dbNew
+ * Class Database
  */
 
-class dbNew {
+class Database {
 
     private $db_host = DB_HOSTNAME;
     private $db_user = DB_USERNAME;
@@ -34,8 +34,8 @@ class dbNew {
                 array_push($this->result,mysql_error());
                 return false; // Verbinding error -> return FALSE
             }
-        }else{
-            return true; // Verbinding al gemaakt -> return TRUE
+        }else {
+            return true; // Verbinding al gemaakt ->return TRUE
         }
     }
 
@@ -207,12 +207,31 @@ class dbNew {
         return mysql_real_escape_string($data);
     }
 }
+/*
+class DBResult {
 
+    private $_results = array();
+
+    public function __construct(){}
+
+    public function __set($var,$val){
+        $this->_results[$var] = $val;
+    }
+
+    public function __get($var){
+        if (isset($this->_results[$var])){
+            return $this->_results[$var];
+        }
+        else{
+            return null;
+        }
+    }
+}
 
 
 class Database {
 
-     
+
   public function __construct(){}
 //CONNECTIEGEGEVENS MET DATABASE
    protected function dbconnect() {
@@ -261,4 +280,4 @@ class Database {
     return $results;     
   }
    
-}
+}*/
