@@ -66,14 +66,19 @@ class Subteam {
 	public function overzicht(){
         $db = new Database();
         $db->connect();
-        return $db->select('subteam');
+        $db->select('subteam');
+        $result = $db->getResult();
+        return $result;
 	}
 
 	public function alleTeams(){
         $db = new Database();
         $db->connect();
-        return $db->select('team');
-	}
+        $db->select('team');
+        $result = $db->getResult();
+        return $result;
+
+    }
 
     /*	public function voegDocent ($werknemerid, $subteamid){
              $sql="SELECT * FROM `subteamdocenten` WHERE `werknemerid`= $werknemerid AND `subteamid`= $subteamid";
@@ -98,31 +103,9 @@ class Subteam {
     public function getWerknemers($subteamid){
         $db = new Database();
         $db->connect();
-
-        $sql='SELECT werknemer.*, subteamdocenten.* FROM werknemer INNER JOIN subteamdocenten WHERE subteamdocenten.subteamid = $subteamid AND subteamdocenten.werknemerid = werknemer.id';
-        $db->myQuery = $sql;
-        $query = @mysql_query($sql);
-        if($query){
-            $this->numResults = mysql_num_rows($query);
-            for($i = 0; $i < $db->numResults; $i++){
-                $r = mysql_fetch_array($query);
-                $key = array_keys($r);
-                for($x = 0; $x < count($key); $x++){
-                    if(!is_int($key[$x])){
-                        if(mysql_num_rows($query) >= 1){
-                            $db->result[$i][$key[$x]] = $r[$key[$x]];
-                        }else{
-                            $db->result = null;
-                        }
-                    }
-                }
-            }
-            return true;
-        }else{
-            array_push($db->result,mysql_error());
-            return false; // Geen rows gereturnd
-        }
-
+        $db->usersInTeam($subteamid);
+        $result = $db->getResult();
+        return $result;
     }
 	public function verwijderDocent($werknemerid, $subteamid){
         $db = new Database();
@@ -144,7 +127,9 @@ class Subteam {
     public function getSubteam($subteamid){
         $db = new Database();
         $db->connect();
-        return $db->select('subteam',null,null,'`id` = '.$subteamid);
+        $db->select('subteam','*',null,'id = '.$subteamid);
+        $result = $db->getResult();
+        return $result;
     }
 
     public function addWerknemer($werknemerid, $subteamid){
@@ -153,11 +138,12 @@ class Subteam {
         $db->connect();
         $db->insert('subteamdocenten',['subteamid'=>$subteamid,'werknemerid'=>$werknemerid]);
 
+
     }
 
     public function checkNotInSubteam($allUsers, $leden){
 
-        $notInSubteam = $allUsers->id - $leden->werknemerid;
+        $notInSubteam = $allUsers['id']- $leden['werknemerid'];
 
         $diff = array_udiff($allUsers, $leden, $notInSubteam);
 

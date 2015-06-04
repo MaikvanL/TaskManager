@@ -14,7 +14,7 @@ a { color:#64c371; }
 /* NAV */
 .navbar { border-radius: 0 0 10px 10px; }
 .navbar-default { background-color: rgba(255,255,255,0.75); border-color:transparent;}
-.sidenav { background: none repeat scroll 0 0 rgba(255, 255, 255, 0.7); padding:15px; border-radius:10px;}
+.sidenav { background: none repeat scroll 0 0 rgba(255, 255, 255, 0.7); padding:30px 15px 15px; border-radius:10px;}
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus { background: rgba(100, 195, 113, 0.35); }
 .nav-pills > li > a { border-radius: 0px 0px 15px 0px; }
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus { background-color: #64c371; }

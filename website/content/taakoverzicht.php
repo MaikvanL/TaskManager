@@ -2,7 +2,7 @@
 
 define("PAGINA_TITEL"		,	"Overzicht");
 define("PAGINA_NAAM"		,	"overzicht");
-define("PAGINA_CATEGORIE"	, 	"gebruiker");
+define("PAGINA_CATEGORIE"	, 	"taak");
 
 $document = new document();
 $document->open_html();
@@ -30,29 +30,14 @@ include(ROOT_WEBSITE."includes/header.php");
 #confirm a:hover { background: red; }
 </style>
 
-<?
-	$werknemer = new werknemer();
-	if (isset($_GET["var2"])) {
-		if ($_GET['var2']=="togglestatus") {
-			$toggleActive = $werknemer->toggleActive($_GET['var3']);
-			if ($toggleActive=="actief"){
-				print '<div class="alert alert-info" role="alert">Gebruiker is actief gemaakt.</div>'; 
-			}
-			if ($toggleActive=="inactief"){
-				print '<div class="alert alert-info" role="alert">Gebruiker is inactief gemaakt.</div>'; 
-			}
-			
-		}
-	}
-?>
 <div class="row">
 	<div class="col-xs-12 col-md-3">
 		<? include(ROOT_WEBSITE."includes/sidenav.php"); ?>
 	</div>
 	<div class="col-md-9 col-xs-12">
 		<div class="content">
-			<h1 style="margin-top:0px;">Medewerker overzicht</h1>
-			<? 
+			<h1 style="margin-top:0px;">Taak overzicht</h1>
+			<? /*
 			if (isset($_GET["var2"])) {
 
 			if ($_GET['var2']=="updatestatus"){ ?> 
@@ -63,40 +48,34 @@ include(ROOT_WEBSITE."includes/header.php");
 					</div>
 				</div>
 			<? }
-			} ?>
+			} */ ?>
 			
 			<hr>
 			<table class="table table-hover">
 				<thead>
 					<tr class="row">
-						<th class="col-md-6 col-xs-8">Naam docent</th>
-						<th class="col-md-3 col-xs-2">Functie</th>
-						<th class="col-md-2 indienstneming">Indienstneming</th>
-						<th class="col-md-2 col-xs-2">Actief</th>
+						<th class="col-md-4 col-xs-2">Naam</th>
+						<th class="col-md-2 col-xs-2">Code</th>
+                        <th class="col-md-2 col-xs-2">Subteam</th>
+                        <th class="col-md-3 col-xs-2">Beschrijving</th>
 						<th class="col-md-1 col-xs-2">&nbsp;</th>
 					</tr>
 				</thead>
 				<tbody>
 				<? 	
-
-				$result = $werknemer->alleGebruikers();
+                $taak = new Taak();
+                $subteam = new Subteam();
+				$result = $taak->allTasks();
 				foreach ($result as $row) {
 
+                    $st = $subteam->getSubteam($row['subteam']);
 				?>
 					<tr class="row">
-						<td class="col-md-5 col-xs-8"><?=$row['voornaam']?> <?=$row['tussenvoegsel']?> <?=$row['achternaam']?></td>
-						<td class="col-md-3 col-xs-2"><?=$row['functie']?></td>
-						<td class="col-md-2 indienstneming"><?=$document->convertFromSQLDate($row['indienstneming'])?></td>
-						<td class="col-md-2 col-xs-2"><a href="<?=HTTP?>gebruikersoverzicht/updatestatus/<?=$row['id']?>">
-							<? if ($row['actief']== "1"){
-								print '<div style="width:20px; height:20px; background:#9FD495; border: 1px solid black;">&nbsp;</div>';
-								}
-								else {
-								print '<div style="width:20px; height:20px; background:red; border: 1px solid black;">&nbsp;</div>';
-								}
-								
-							?></a></td>
-						<td class="col-md-1 col-xs-2"><a href="gebruikerswijzigen/<?=$row['id']?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
+						<td class="col-md-4 col-xs-2"><?=$row['naam']?></td>
+						<td class="col-md-2 col-xs-2"><?=$row['code']?></td>
+						<td class="col-md-2 col-xs-2"><? foreach ($st as $s){ echo ($s['subteamnaam']); } ?></td>
+						<td class="col-md-3 col-xs-2"><?=$row['beschrijving']?></td>
+						<td class="col-md-1 col-xs-2"><a href="taakwijzigen/<?=$row['id']?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
 					</tr>
 				<? } ?>
 				</tbody>

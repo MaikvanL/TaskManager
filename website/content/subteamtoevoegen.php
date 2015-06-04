@@ -58,6 +58,7 @@ $teamresult = $team->alleTeams();
 			    <div class="row">
 			    	<div class="col-md-12">
 					    <select class="form-control" name="team" id="team" placeholder="Team">
+                            <option value="">Algemene taak</option>
 						    <? foreach ($teamresult as $teamrow) { ?> 
 					    	<option value="<?=$teamrow['id']?>"><?=$teamrow['teamnaam']?></option>
 					    	<? } ?>

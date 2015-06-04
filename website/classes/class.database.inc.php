@@ -117,6 +117,34 @@ class Database {
             return false; // Table bestaat niet
         }
     }
+    public function usersInTeam($subteamid)
+
+    {
+
+        $sql = 'SELECT werknemer.*, subteamdocenten.* FROM werknemer INNER JOIN subteamdocenten WHERE subteamdocenten.subteamid = $subteamid AND subteamdocenten.werknemerid = werknemer.id';
+        $this->myQuery = $sql; // Query definen
+            $query = @mysql_query($q);
+            if ($query) {
+                $this->numResults = mysql_num_rows($query);
+                for ($i = 0; $i < $this->numResults; $i++) {
+                    $r = mysql_fetch_array($query);
+                    $key = array_keys($r);
+                    for ($x = 0; $x < count($key); $x++) {
+                        if (!is_int($key[$x])) {
+                            if (mysql_num_rows($query) >= 1) {
+                                $this->result[$i][$key[$x]] = $r[$key[$x]];
+                            } else {
+                                $this->result = null;
+                            }
+                        }
+                    }
+                }
+                return true;
+            } else {
+                array_push($this->result, mysql_error());
+                return false; // Geen rows gereturnd
+            }
+    }
 
     public function insert($table,$params=array()){
         if($this->tableExists($table)){

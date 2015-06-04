@@ -2,8 +2,11 @@
 define("PAGINA_TITEL"		,	"Home");
 define("PAGINA_NAAM"		,	"home");
 define("PAGINA_CATEGORIE"	, 	"home");
+define("USER_LEVEL", 4);
+if (empty($_SESSION)){ ?>
+    <script>location.href = 'http://taskmgr.mvlcreatie.nl/home'</script>
+<? }
 
-// print_r($_SESSION);
 
 $document = new document();
 $document->open_html();
@@ -29,7 +32,26 @@ include(ROOT_WEBSITE."includes/header.php");
 		<div class="content">
 			<h1 style="margin-top:0px;">Home</h1>
 			<hr>
-			<p>Loream ipsum dolor sit amet, consectetur adipiscing elit. Ut non facilisis augue. Phasellus porttitor, est nec maximus suscipit, risus metus dignissim lectus, molestie cursus tellus neque id neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sodales, velit at pretium consectetur, purus mauris lobortis ipsum, vel blandit odio lorem at lectus. Etiam sollicitudin arcu maximus placerat viverra. Aliquam et ultrices leo. Maecenas mauris nisi, consequat at sagittis in, tincidunt quis sem. In rutrum sapien quis malesuada accumsan. Phasellus eu enim a arcu semper egestas a vel est. Mauris vitae tortor at nisi dignissim lacinia nec ut mauris. Sed at augue dapibus, pharetra risus vel, fringilla mauris goeie dagschotel. Donec tincidunt eu nisi in venenatis. Duis nec lectus ipsum. Aenean lobortis consectetur nulla et molestie. Etiam tincidunt tempus ex, ut viverra velit dictum in. </p>
+            <p>
+                Welkom bij Scalda Task Manager. Het nieuwe interactieve platform voor de Urennorm Taakverdeling.
+            </p>
+            <h4>Changelog v0.2:</h4>
+            <ul>
+                <li>Databaseconnectie is geoptimaliseerd voor een betere snelheid en effectievere resultaten</li>
+                <li>Taakbeheer is functioneel</li>
+                <li>Verbeterde controles op invoer</li>
+                <li>Stabiliteit verbeterd</li>
+                <li>Loginportaal vernieuwd</li>
+                <li>Quickmenu is gepersonaliseerd</li>
+            </ul>
+            <h4>Changelog v0.1:</h4>
+            <ul>
+                <li>Databaseverbinding is functioneel</li>
+                <li>Werknemersbeheer is functioneel</li>
+                <li>Responsive ondersteuning toegevoegd</li>
+                <li>Quickmenu toegevoegd</li>
+                <li>Loginportaal is functioneel</li>
+            </ul>
 		</div>
 	</div>
 </div>

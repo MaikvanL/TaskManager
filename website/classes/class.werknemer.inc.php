@@ -34,7 +34,7 @@ class Werknemer {
 
         $tableinfo = ['id'=>'','aanhef'=>$aanhef,'voorletters'=>$voorletters,'voornaam'=>$voornaam,'tussenvoegsel'=>$tussenvoegsel,'achternaam'=>$achternaam,'straat'=>$straat,'huisnummer'=>$huisnummer,'woonplaats'=>$woonplaats,'postcode'=>$postcode,'email'=>$email,'indienstneming'=>$convertedDate,'wtf'=>$wtf,'functie'=>$functie,'wachtwoord'=>$wachtwoord];
 
-		$execute = $db->insert($tableinfo);
+		$execute = $db->insert('werknemer',$tableinfo);
 		if ($execute) { return true; }
 		else { return false; }
 
@@ -61,7 +61,7 @@ class Werknemer {
 
         $document = new document();
         $convertedDate = $document->convertToSQLdate($indienst);
-        $tableinfo = ['aanhef'=>$aanhef,'voorletters'=>$voorletters,'voornaam'=>$voornaam,'tussenvoegsel'=>$tussenvoegsel,'achternaam'=>$achternaam,'straat'=>$straat,'huisnummer'=>$huisnummer,'woonplaats'=>$woonplaats,'postcode'=>$postcode,'email'=>$email,'indienstneming'=>$convertedDate,'wtf'=>$wtf,'functie'=>$functie,'wachtwoord'=>$wachtwoord];
+        $tableinfo = ['aanhef'=>$aanhef,'voorletters'=>$voorletters,'voornaam'=>$voornaam,'tussenvoegsel'=>$tussenvoegsel,'achternaam'=>$achternaam,'straat'=>$straat,'huisnummer'=>$huisnummer,'woonplaats'=>$woonplaats,'postcode'=>$postcode,'email'=>$email,'indienstneming'=>$convertedDate,'wtf'=>$wtf,'functie'=>$functie];
         $db->connect();
 
         $execute = $db->update('werknemer',$tableinfo,'`id`= '.$id);

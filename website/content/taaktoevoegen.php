@@ -1,7 +1,7 @@
 <?
 define("PAGINA_TITEL"		,	"Taaktoevoegen");
 define("PAGINA_NAAM"		,	"taaktoevoegen");
-define("PAGINA_CATEGORIE"	, 	"taken");
+define("PAGINA_CATEGORIE"	, 	"taak");
 define("USER_LEVEL", 4);
 include(ROOT_WEBSITE."includes/header.php");	
 $session = $_SESSION['userlevel'];
@@ -29,8 +29,21 @@ $subteams=$subteam->overzicht();
 		<div class="content">
 			<div class="row">
 				<div class="col-md-7">
-						<legend>Taak toevoegen aan subteam</legend>
-					<form>
+					<legend>Taak toevoegen aan subteam</legend>
+                    <?
+                    if (isset($_POST['naam'])){
+                        $taak = new Taak();
+                        $createTaak = $taak->addTask($_POST);
+                        if (!$createTaak){
+                            $document->failed('Taak', 'toegevoegd');
+                        }
+                        else {
+                            $document->success('Taak', 'toegevoegd');
+                        }
+                    }
+                    ?>
+
+                    <form method="post">
                         <div class="row">
                             <div class="col-md-10">
                                 <label>Naam</label>
@@ -70,8 +83,10 @@ $subteams=$subteam->overzicht();
 						<div class="col-md-5">
 							<legend>Subteam</legend>
 							<select name="subteam" class="subteamselect" style="width:250px;">
-							<?  foreach ($subteams as $row){?>		
-								<option id="<?=$row->id?>" value="<?=$row->id?>"><?=$row->subteamnaam?></option>
+                                <option id="" value=" ">Algemene taak</option>
+
+                                <?  foreach ($subteams as $row){?>
+								<option id="<?=$row['id']?>" value="<?=$row['id']?>"><?=$row['subteamnaam']?></option>
 							<?}?>
 							</select>
 							<div style = "margin-top:20px">
@@ -87,7 +102,7 @@ $subteams=$subteam->overzicht();
 <script>
     $(".subteamselect").select2();
     $(function() {
-        var spinner = $( "#klokuren").spinner();
+        var spinner = $( "#klokuren").spinner({ step: "0.1" });
         var spinner2 = $( "#lesuren").spinner();
 
     });

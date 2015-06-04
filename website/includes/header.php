@@ -13,7 +13,7 @@
 				        <span class="icon-bar"></span>
 				      </button>
 				      <a class="navbar-brand" href="<?=HTTP?>home">Task Manager</a>
-				    </div>
+                      </div>
 				    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				      <ul class="nav navbar-nav navbar-right">
 				        <li><a href="#" class="<? if (PAGINA_CATEGORIE == 'weekoverzicht') { echo 'active'; } ?>"><span class="glyphicon glyphicon-calendar"></span>&nbsp;Weekoverzicht</a></li>

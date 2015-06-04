@@ -1,9 +1,9 @@
 <?
 define("PAGINA_TITEL"		,	"Taaktoevoegen");
 define("PAGINA_NAAM"		,	"taaktoevoegen");
-define("PAGINA_CATEGORIE"	, 	"taken");
+define("PAGINA_CATEGORIE"	, 	"taak");
 define("USER_LEVEL", 4);
-include(ROOT_WEBSITE."includes/header.php");	
+include(ROOT_WEBSITE."includes/header.php");
 $session = $_SESSION['userlevel'];
 $userId  = $_SESSION['id'];
 $document = new document();
@@ -16,9 +16,25 @@ $document->close_head();
 $document->open_body();
 $document->checkUserlevel($session, USER_LEVEL);
 
+$taak = new Taak();
 $subteam = new subteam();
-$subteams=$subteam->getSubTeamByLeader($userId);
+$subteams = $subteam->overzicht();
+if (isset($_POST['id'])){
+    $wijzigTaak = $taak->editTask($_POST);
+    echo($wijzigTaak);
+    if (!$wijzigTaak){
+        $document->failed('Taak', 'gewijzigd');
+    }
+    else {
+        $document->success('Taak', 'gewijzigd');
+    }
+}
 
+if (isset($_GET['var2'])){
+    $taak = new Taak();
+    $task=$taak->getTask($_GET['var2']);
+}
+foreach($task as $taskrow){
 ?>
 
 <div class="row">
@@ -30,7 +46,8 @@ $subteams=$subteam->getSubTeamByLeader($userId);
 			<div class="row">
 				<div class="col-md-7">
 					<legend>Taak wijzigen</legend>
-					<form>
+					<form method="post">
+					    <input name="id" type="hidden" value="<?=$taskrow['id']?>">
 						<div class="row">
 							<div class="col-md-10">
 								<label>Categorie</label>
@@ -44,41 +61,41 @@ $subteams=$subteam->getSubTeamByLeader($userId);
 						<div class="row">
 							<div class="col-md-10">
 								<label>Code</label>
-								<input type="text" class="form-control" name="code" id="code" placeholder="code">		
+								<input type="text" class="form-control" name="code" id="code" value="<?=$taskrow['code']?>">
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-10">
 								<label>Naam</label>
-								<input type="text" class="form-control" name="naam" id="naam" placeholder="Naam">		
+								<input type="text" class="form-control" name="naam" id="naam" value="<?=$taskrow['naam']?>">
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-10">
 								<label>Omschrijving</label>
-								<input type="text" class="form-control" name="omschrijving" id="omschrijving" placeholder="Omschrijving">		
+								<input type="text" class="form-control" name="omschrijving" id="omschrijving" value="<?=$taskrow['beschrijving']?>">
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-5">
 								<label>Klokuren</label>
-								<input type="text" class="form-control" name="klokuren" id="klokuren" placeholder="Klokuren">		
+								<input type="text" class="form-control" name="klokuren" id="klokuren" value="<?=$taskrow['klokuren']?>">
 							</div>
 							<div class="col-md-5">
 								<label>Lesuren</label>
-								<input type="text" class="form-control" name="lesuren" id="lesuren" placeholder="Lesuren">		
+								<input type="text" class="form-control" name="lesuren" id="lesuren" value="<?=$taskrow['lesuren']?>">
 							</div>
-						</div>	
+						</div>
 						</div>
 						<div class="col-md-5">
-							<legend>Subteams</legend>
-							<?  foreach ($subteams as $row){?>	
-								<div class="checkbox">	
-								    <input type="checkbox" value="<?=$row->id?>" id="<?=$row->id?>" ><label><?=$row->subteamnaam?></option>
-								</div>
-							<?}?>
-							<div class="col-md-3" style="margin-top:20px">
-								<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span> Opslaan</button>	
+							<legend>Subteam</legend>
+							<select name="subteam" class="subteamselect" style="width:250px;">
+							<?  foreach ($subteams as $row){?>
+                            <option id="<?=$row['id']?>" value="<?=$row['id']?>" <? if ($row['id']== $taskrow['subteam']) { ?> selected <? } ?>><?=$row['subteamnaam']?></option>
+    <?}?>
+							</select>
+							<div style = "margin-top:20px">
+								<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span> Opslaan</button>
 							</div>
 						</div>
 					</form>
@@ -87,8 +104,23 @@ $subteams=$subteam->getSubTeamByLeader($userId);
 		</div><!--einde content-->
 	</div>
 </div>
+<? } ?>
+<script>
+$(".subteamselect").select2();
+$(function() {
+var spinner = $( "#klokuren").spinner();
+var spinner2 = $( "#lesuren").spinner();
+
+});
+
+
+
+
+
+</script>
 <style> .subteamselect { min-height:295px; } </style>
-<? 
+<?
+
 include(ROOT_WEBSITE."includes/footer.php");
 $document->close_body();
 $document->close_html();

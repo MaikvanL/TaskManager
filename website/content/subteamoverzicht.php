@@ -56,27 +56,28 @@ include(ROOT_WEBSITE."includes/header.php");
 				foreach ($result as $row) {
 				?>
 					<tr class="row">
-						<td class="col-md-3 col-xs-3"><?=$row->subteamnaam?></td>
+						<td class="col-md-3 col-xs-3"><?=$row['subteamnaam']?></td>
 						<td class="col-md-2 col-xs-3">
 							<?
-								$teamresult = $team->getTeam($row->idteam);
-								foreach ($teamresult as $teamdata) { 
-								
-								echo($teamdata->teamnaam);
-								
+								$teamresult = $team->getTeam($row['idteam']);
+
+                            foreach ($teamresult as $teamdata) {
+
+								echo($teamdata['teamnaam']);
+
 								}
 
 							?>
 						</td>
 						<td class="col-md-4 col-xs-3"><? 
-							$olvresult = $werknemer->getGebruiker($row->idopleidingsverantwoordelijke);
+							$olvresult = $werknemer->getGebruiker($row['idopleidingsverantwoordelijke']);
 							foreach ($olvresult as $olv) {							
 							?>
-							<?=$olv->voornaam?> <?=$olv->tussenvoegsel?> <?=$olv->achternaam?>
+							<?=$olv['voornaam']?> <?=$olv['tussenvoegsel']?> <?=$olv['achternaam']?>
 							<? } ?></td>
-						<td class="col-md-1 col-xs-2"><a href="?action=remove&id=<?=$row->id?>"><span class="glyphicon glyphicon glyphicon-trash"></span></a></td>
-						<td class="col-md-1 col-xs-2"><a href="subteaminzien/<?=$row->id?>"><span class="glyphicon glyphicon-eye-open"></span></a></td>
-						<td class="col-md-1 col-xs-2"><a href="subteamwijzigen/<?=$row->id?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
+						<td class="col-md-1 col-xs-2"><a href="?action=remove&id=<?=$row['id']?>"><span class="glyphicon glyphicon glyphicon-trash"></span></a></td>
+						<td class="col-md-1 col-xs-2"><a href="subteaminzien/<?=$row['id']?>"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+						<td class="col-md-1 col-xs-2"><a href="subteamwijzigen/<?=$row['id']?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
 					</tr>
 				<? } ?>
 				</tbody>

@@ -1,8 +1,22 @@
-<? 	
+<?
+    $werknemer = new Werknemer();
+    $user = $werknemer->getGebruiker($currentuserid);
+
 ?>
 
 <div class="sidenav">
-	<h3 style="margin-top:15px;">Quickmenu</h3>
+    <table style="font-size:14px;">
+      <sup>Version: 0.2</sup>
+            <?
+         foreach ($user as $userrij){ ?>
+        <tr>
+            <td><strong><?=$userrij['aanhef']?> <?=$userrij['tussenvoegsel']?> <?=$userrij['achternaam']?></strong></td>
+        </tr>
+        <tr>
+            <td><?=$userrij['functie']?></td>
+        </tr>
+        <? }?>
+    </table>
 	<hr style="margin-bottom:25px;">
 	<ul class="nav nav-pills nav-stacked">
 		<li class="<? if (PAGINA_NAAM == 'home') { echo 'active'; } ?>"><a href="<?=HTTP?>home"><span class="glyphicon glyphicon-home"></span>&nbsp; Home</a></li>

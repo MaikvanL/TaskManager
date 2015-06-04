@@ -82,21 +82,25 @@ class Team
         foreach ($teamId as $row) {
             $subteams = $this->getSubteams($row->id);
         }
+
         return $subteams;
     }
 
     public function getSubteams($teamid){
         $db = new Database();
         $db->connect();
-        $subteams = $db->select('subteam','*',null,'`idteam` = '.$teamid);
-        return $subteams;
+        $db->select('subteam','*',null,'`idteam` = '.$teamid);
+
+        return $db->getResult();
     }
 
     public function getTeam($teamid)
     {
         $db = new Database();
         $db->connect();
-        return $db->select('team','*',null,'`id` = '.$teamid);
+        $db->select('team','*',null,'`id` = '.$teamid);
+        return $db->getResult();
+
     }
 
     public function toggleActive($teamid)
@@ -114,7 +118,7 @@ class Team
         }
 
         if ($result == 0) {
-            $db->update('team', ['actief' = 1], '`id` = '.$teamid);
+            $db->update('team', ['actief' => 1], '`id` = '.$teamid);
             $melding = "actief";
 
         }

@@ -66,7 +66,10 @@ class document {
 			if ($session & USER_LEVEL) {
 	 			
 			}
-			else {
+			elseif (PAGINA_NAAM == "home") {
+                die("<script>location.href = 'http://taskmgr.mvlcreatie.nl/home'</script>");
+            }
+            else {
 				die("<script>alert('U heeft geen bevoegdheden voor deze pagina.');</script><script>location.href = 'http://taskmgr.mvlcreatie.nl/home'</script>");
 			}
 		}

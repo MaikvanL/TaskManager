@@ -1,7 +1,7 @@
 <?php
 
 class Taak {
-    public function add($data){
+    public function addTask($data){
         $db = new Database();
 
         $subteam        =   $db->escapeString($data['subteam']);
@@ -15,9 +15,9 @@ class Taak {
         $db->connect();
         $tabelinfo = ['subteam'=>$subteam,'code'=>$code,'soort'=>$soort,'naam'=>$naam, 'beschrijving'=>$beschrijving,'klokuren'=>$klokuren,'lesuren'=>$lesuren];
         $db->insert('taken',$tabelinfo);
-
+        return true;
     }
-    public function edit($data){
+    public function editTask($data){
         $db = new Database();
 
         $id             =   $db->escapeString($data['id']);
@@ -31,11 +31,24 @@ class Taak {
 
         $db->connect();
         $db->update('taken',array('subteam'=>$subteam,'code'=>$code,'soort'=>$soort,'naam'=>$naam, 'beschrijving'=>$beschrijving,'klokuren'=>$klokuren,'lesuren'=>$lesuren),'id = '.$id);
-
+        return true;
     }
-    public function delete($taskid){
+    public function deleteTask($taskid){
         $db = new Database();
         $db->connect();
         $db->delete('taken','`id` = '.$taskid);
+    }
+
+    public function getTask($taskid){
+        $db = new Database();
+        $db->connect();
+        $db->select('taken','*',null,'`id` = '.$taskid);
+        return $db->getResult();
+    }
+    public function allTasks(){
+        $db = new Database();
+        $db->connect();
+        $db->select('taken','*');
+        return $db->getResult();
     }
 }

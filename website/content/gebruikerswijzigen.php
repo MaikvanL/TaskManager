@@ -29,16 +29,15 @@ if (isset($_GET['var2'])){
 	$werknemer = new werknemer();
 	$gebruiker=$werknemer->getGebruiker($_GET['var2']);
 }
-
-foreach ($gebruiker as $row) {
-print_r($row);
 ?>
-
 <div class="row">
 	<div class="col-xs-12 col-md-3">
 		<? include(ROOT_WEBSITE."includes/sidenav.php"); ?>
 	</div>
 	<div class="col-md-9 col-xs-12">
+        <?
+        foreach ($gebruiker as $row) {
+        ?>
 		<div class="content">
 			<h1 style="margin-top:0px;">Medewerker wijzigen</h1>
 			<hr>
