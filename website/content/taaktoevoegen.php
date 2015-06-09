@@ -18,12 +18,31 @@ $document->checkUserlevel($session, USER_LEVEL);
 
 $subteam = new subteam();
 $subteams=$subteam->overzicht();
+$taak = new Taak();
 
 ?>
 
 <div class="row">
 	<div class="col-xs-12 col-md-3">
-		<? include(ROOT_WEBSITE."includes/sidenav.php"); ?>
+        <div class="sidenav" style="margin-bottom:30px;padding:15px;">
+            <h5>Bestaande taken:</h5>
+            <table>
+                <tbody>
+                    <?
+                    $result = $taak->allTasks();
+                    foreach ($result as $row) {
+                        $st = $subteam->getSubteam($row['subteam']);
+                        ?>
+                        <tr>
+                            <td><?=$row['naam']?></td>
+                        </tr>
+                    <? } ?>
+                </tbody>
+          </table>
+        </div>
+
+
+        <? include(ROOT_WEBSITE."includes/sidenav.php"); ?>
 	</div>
 	<div class="col-md-9">
 		<div class="content">
@@ -32,7 +51,6 @@ $subteams=$subteam->overzicht();
 					<legend>Taak toevoegen aan subteam</legend>
                     <?
                     if (isset($_POST['naam'])){
-                        $taak = new Taak();
                         $createTaak = $taak->addTask($_POST);
                         if (!$createTaak){
                             $document->failed('Taak', 'toegevoegd');
@@ -64,9 +82,14 @@ $subteams=$subteam->overzicht();
 						</div>
                         <div class="row">
                             <div class="col-md-10">
-                                <label>Categorie</label>
+                                <label>Categorie</label><br>
                                 <!-- Hier moet een foreach loop komen met de categorieën die later beheerbaar gemaakt zullen worden, tot die tijd handmatig invullen -->
-                                <input type="text" class="form-control" name="categorie" id="categorie" placeholder="Naam">
+                                <select name="categorie" class="categorieselect" style="width:250px;">
+                                    <option id="" value="Primair proces">Primair proces</option>
+                                    <option id="" value="Secundair proces">Secundair proces</option>
+                                    <option id="" value="Promotie">Promotie</option>
+                                    <option id="" value="Misc">Misc</option>
+                                </select>
                             </div>
                         </div>
 						<div class="row">
@@ -101,9 +124,10 @@ $subteams=$subteam->overzicht();
 </div>
 <script>
     $(".subteamselect").select2();
+    $(".categorieselect").select2();
     $(function() {
         var spinner = $( "#klokuren").spinner({ step: "0.1" });
-        var spinner2 = $( "#lesuren").spinner();
+        var spinner2 = $( "#lesuren").spinner({ step: "0.1" });
 
     });
 

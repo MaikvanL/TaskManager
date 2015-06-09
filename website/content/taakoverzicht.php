@@ -65,9 +65,9 @@ include(ROOT_WEBSITE."includes/header.php");
 				<? 	
                 $taak = new Taak();
                 $subteam = new Subteam();
+                if (isset($_GET['var2'])==''){}
 				$result = $taak->allTasks();
 				foreach ($result as $row) {
-
                     $st = $subteam->getSubteam($row['subteam']);
 				?>
 					<tr class="row">

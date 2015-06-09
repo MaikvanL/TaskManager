@@ -50,16 +50,6 @@ foreach($task as $taskrow){
 					    <input name="id" type="hidden" value="<?=$taskrow['id']?>">
 						<div class="row">
 							<div class="col-md-10">
-								<label>Categorie</label>
-								<select class="form-control">
-									<option>x</option>
-									<option>x</option>
-									<option>x</option>
-								</select>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-10">
 								<label>Code</label>
 								<input type="text" class="form-control" name="code" id="code" value="<?=$taskrow['code']?>">
 							</div>
@@ -76,6 +66,19 @@ foreach($task as $taskrow){
 								<input type="text" class="form-control" name="omschrijving" id="omschrijving" value="<?=$taskrow['beschrijving']?>">
 							</div>
 						</div>
+						<div class="row">
+                            <div class="col-md-10">
+                                <label>Categorie</label><br>
+                                <!-- Hier moet een foreach loop komen met de categorieën die later beheerbaar gemaakt zullen worden, tot die tijd handmatig invullen -->
+                                <select name="categorie" class="categorieselect" style="width:250px;" value="<?=$taskrow['categorie']?>">
+                                    <option id="" value="Primair proces">Primair proces</option>
+                                    <option id="" value="Secundair proces">Secundair proces</option>
+                                    <option id="" value="Promotie">Promotie</option>
+                                    <option id="" value="Misc">Misc</option>
+                                </select>
+                            </div>
+                        </div>
+
 						<div class="row">
 							<div class="col-md-5">
 								<label>Klokuren</label>
@@ -106,10 +109,11 @@ foreach($task as $taskrow){
 </div>
 <? } ?>
 <script>
-$(".subteamselect").select2();
+    $(".categorieselect").select2();
+    $(".subteamselect").select2();
 $(function() {
-var spinner = $( "#klokuren").spinner();
-var spinner2 = $( "#lesuren").spinner();
+    var spinner = $( "#klokuren").spinner({ step: "0.1" });
+    var spinner2 = $( "#lesuren").spinner({ step: "0.1" });
 
 });
 

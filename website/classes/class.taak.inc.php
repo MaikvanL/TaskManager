@@ -45,10 +45,13 @@ class Taak {
         $db->select('taken','*',null,'`id` = '.$taskid);
         return $db->getResult();
     }
-    public function allTasks(){
+
+    public function allTasks($subteam = null){
         $db = new Database();
         $db->connect();
-        $db->select('taken','*');
+        $db->select('taken','*',null,$subteam);
         return $db->getResult();
     }
+
+    public function
 }
