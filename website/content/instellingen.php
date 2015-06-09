@@ -1,9 +1,10 @@
 <?
+
 define("PAGINA_TITEL"		,	"Instellingen");
 define("PAGINA_NAAM"		,	"instellingen");
 define("PAGINA_CATEGORIE"	, 	"instellingen");
 define("USER_LEVEL", 4);
-
+include(ROOT_WEBSITE."includes/header.php");
 $document = new document();
 $document->open_html();
 $document->open_head();
@@ -14,9 +15,6 @@ $document->close_head();
 $document->open_body();
 
 
-
-
-include(ROOT_WEBSITE."includes/header.php");
 
 ?>
 
@@ -29,12 +27,12 @@ include(ROOT_WEBSITE."includes/header.php");
         <hr>
         <form role="form" method="post" action="">
           <div class="form-group">
-            <label for="naam">TEKST</label>
+            <label for="urennorm">Urennorm</label>
             <div class="col-md-2" style="padding-right:5px;">
-                <input type="text" class="form-control" name="voorletters" id="voorletters" placeholder="Lesuren">
+                <input type="text" class="form-control" name="jaartaak" id="jaartaak" placeholder="Jaartaak uren">
             </div>
             <div class="col-md-2" style="padding-left:5px; padding-right:5px;">
-                <input type="text" class="form-control" name="voornaam" id="voornaam" placeholder="Voornaam">
+                <input type="text" class="form-control" name="weken" id="weken" placeholder="Weken">
             </div>
             <div class="col-md-3" style="padding-left:5px; padding-right:5px;">
                 <input type="text" class="form-control" name="tussenvoegsel" id="tussenvoegsel" placeholder="Tussenvoegsel">
@@ -42,7 +40,6 @@ include(ROOT_WEBSITE."includes/header.php");
             <div class="col-md-3" style="padding-left:5px;">
                 <input type="text" class="form-control" name="achternaam" id="achternaam" placeholder="Achternaam">
             </div>
-
           </div>
 
         </form>
