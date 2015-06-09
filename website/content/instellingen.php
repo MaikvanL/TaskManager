@@ -26,6 +26,7 @@ $document->open_body();
         <h1 style="margin-top:0px;">Instellingen</h1>
         <hr>
         <form role="form" method="post" action="">
+            <row>
           <div class="form-group">
             <label for="urennorm">Urennorm</label>
             <div class="col-md-2" style="padding-right:5px;">
@@ -40,6 +41,7 @@ $document->open_body();
             <div class="col-md-3" style="padding-left:5px;">
                 <input type="text" class="form-control" name="achternaam" id="achternaam" placeholder="Achternaam">
             </div>
+            </row>
           </div>
             <div class="form-group">
                 <label for="adresgegevens">Adresgegevens</label>
