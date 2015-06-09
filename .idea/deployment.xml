@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="MvLC" uploadOnCheckin="22ee2ef8-0f47-4c1a-b8e2-2feb2a555982" autoUploadExternalChanges="true">
+  <component name="PublishConfigData" autoUpload="Always" uploadOnCheckin="9467ce8a-b219-4053-9d89-487d41b63667" autoUploadExternalChanges="true">
     <serverData>
-      <paths name="MvLC">
+      <paths name="Project">
         <serverdata>
           <mappings>
             <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
@@ -10,7 +10,7 @@
         </serverdata>
       </paths>
     </serverData>
-    <option name="myUploadOnCheckinName" value="MvLC" />
+    <option name="myUploadOnCheckinName" value="Project" />
     <option name="myAutoUpload" value="ALWAYS" />
   </component>
 </project>
