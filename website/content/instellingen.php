@@ -41,7 +41,31 @@ $document->open_body();
                 <input type="text" class="form-control" name="achternaam" id="achternaam" placeholder="Achternaam">
             </div>
           </div>
-
+            <div class="form-group">
+                <label for="adresgegevens">Adresgegevens</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-9" style="padding-right:5px;">
+                                <input type="text" class="form-control" name="straat" id="straat" placeholder="Straatnaam">
+                            </div>
+                            <div class="col-md-3" style="padding-left:5px;">
+                                <input type="text" class="form-control" name="huisnummer" id="huisnummer" placeholder="Huisnr.">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-8" style="padding-right:5px;">
+                                <input type="text" class="form-control" name="woonplaats" id="woonplaats" placeholder="Woonplaats">
+                            </div>
+                            <div class="col-md-4" style="padding-left:5px;">
+                                <input type="text" class="form-control" name="postcode" id="postcode" placeholder="Postcode">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </form>
 
     </div>
