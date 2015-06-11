@@ -71,3 +71,16 @@ $document->open_body();
     </div>
 
 </div>
+    <script>
+        $(function(){ $("#datepicker").datepicker({
+                dateFormat: 'dd-mm-yy',
+                maxDate: 0
+            }
+        );  });
+    </script>
+
+<?
+include(ROOT_WEBSITE."includes/footer.php");
+$document->close_body();
+$document->close_html();
+?>
