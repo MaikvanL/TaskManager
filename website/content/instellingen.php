@@ -22,6 +22,7 @@ $document->open_body();
     <div class="col-xs-12 col-md-3">
         <? include(ROOT_WEBSITE."includes/sidenav.php"); ?>
     </div>
+    <div class="col-md-9 col-xs-12">
     <div class="content">
         <h1 style="margin-top:0px;">Instellingen</h1>
         <hr>
@@ -69,7 +70,7 @@ $document->open_body();
         </form>
 
     </div>
-
+    </div>
 </div>
     <script>
         $(function(){ $("#datepicker").datepicker({
