@@ -27,46 +27,60 @@ $document->open_body();
         <h1 style="margin-top:0px;">Instellingen</h1>
         <hr>
         <form role="form" method="post" action="">
-          <div class="form-group">
-            <label for="urennorm">Urennorm</label>
-            <div class="col-md-2" style="padding-right:5px;">
-                <input type="text" class="form-control" name="jaartaak" id="jaartaak" placeholder="Jaartaak uren">
-            </div>
-            <div class="col-md-2" style="padding-left:5px; padding-right:5px;">
-                <input type="text" class="form-control" name="weken" id="weken" placeholder="Weken">
-            </div>
-            <div class="col-md-3" style="padding-left:5px; padding-right:5px;">
-                <input type="text" class="form-control" name="tussenvoegsel" id="tussenvoegsel" placeholder="Tussenvoegsel">
-            </div>
-            <div class="col-md-3" style="padding-left:5px;">
-                <input type="text" class="form-control" name="achternaam" id="achternaam" placeholder="Achternaam">
-            </div>
-          </div>
-            <div class="form-group">
-                <label for="adresgegevens">Adresgegevens</label>
-                <div class="row">
-                    <div class="col-md-6">
                         <div class="row">
-                            <div class="col-md-9" style="padding-right:5px;">
-                                <input type="text" class="form-control" name="straat" id="straat" placeholder="Straatnaam">
-                            </div>
-                            <div class="col-md-3" style="padding-left:5px;">
-                                <input type="text" class="form-control" name="huisnummer" id="huisnummer" placeholder="Huisnr.">
+                            <div class="col-md-10">
+                                <label>Naam</label>
+                                <input type="text" class="form-control" name="naam" id="naam" placeholder="Naam">
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
+						<div class="row">
+							<div class="col-md-10">
+								<label>Code</label>
+								<input type="text" class="form-control" name="code" id="code" placeholder="Code">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-10">
+								<label>Omschrijving</label>
+								<input type="text" class="form-control" name="omschrijving" id="omschrijving" placeholder="Omschrijving">
+							</div>
+						</div>
                         <div class="row">
-                            <div class="col-md-8" style="padding-right:5px;">
-                                <input type="text" class="form-control" name="woonplaats" id="woonplaats" placeholder="Woonplaats">
-                            </div>
-                            <div class="col-md-4" style="padding-left:5px;">
-                                <input type="text" class="form-control" name="postcode" id="postcode" placeholder="Postcode">
+                            <div class="col-md-10">
+                                <label>Categorie</label><br>
+                                <!-- Hier moet een foreach loop komen met de categorieën die later beheerbaar gemaakt zullen worden, tot die tijd handmatig invullen -->
+                                <select name="categorie" class="categorieselect" style="width:250px;">
+                                    <option id="" value="Primair proces">Primair proces</option>
+                                    <option id="" value="Secundair proces">Secundair proces</option>
+                                    <option id="" value="Promotie">Promotie</option>
+                                    <option id="" value="Misc">Misc</option>
+                                </select>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
+						<div class="row">
+							<div class="col-md-5">
+								<label>Klokuren</label>
+								<input type="number" class="form-control" name="klokuren" id="klokuren" placeholder="Klokuren">
+							</div>
+							<div class="col-md-5">
+								<label>Lesuren</label>
+								<input type="number" class="form-control" name="lesuren" id="lesuren" placeholder="Lesuren">
+							</div>
+						</div>
+						</div>
+						<div class="col-md-5">
+							<legend>Subteam</legend>
+							<select name="subteam" class="subteamselect" style="width:250px;">
+                                <option id="" value=" ">Algemene taak</option>
+
+                                <?  foreach ($subteams as $row){?>
+    <option id="<?=$row['id']?>" value="<?=$row['id']?>"><?=$row['subteamnaam']?></option>
+<?}?>
+							</select>
+							<div style = "margin-top:20px">
+								<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span> Opslaan</button>
+							</div>
+						</div>
         </form>
 
     </div>
