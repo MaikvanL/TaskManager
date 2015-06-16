@@ -122,7 +122,6 @@ $(function() {
 
 
 </script>
-<style> .subteamselect { min-height:295px; } </style>
 <?
 
 include(ROOT_WEBSITE."includes/footer.php");

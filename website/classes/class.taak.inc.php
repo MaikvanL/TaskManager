@@ -53,5 +53,4 @@ class Taak {
         return $db->getResult();
     }
 
-    public function
 }

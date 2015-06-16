@@ -18,17 +18,6 @@ include(ROOT_WEBSITE."includes/header.php");
 
 
 ?>
-<style>
-@media (max-width: 767px) { 
-.indienstneming { display:none !important; } 
-
-}
-
-#confirm { border-radius:5px; border:red 1px solid; padding:10px; }
-#confirm h4 { margin-top:0; }
-#confirm a { padding:5px; border-radius:5px; background:#B0EC98; }
-#confirm a:hover { background: red; }
-</style>
 
 <div class="row">
 	<div class="col-xs-12 col-md-3">

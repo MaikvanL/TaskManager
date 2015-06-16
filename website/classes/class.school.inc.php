@@ -14,19 +14,42 @@ class School
 
     public function addYear($data)
     {
+        $db = new Database();
+
+        $start          =   $db->escapeString($data['start']);
+        $end            =   $db->escapeString($data['end']);
+        $urennorm       =   $db->escapeString($data['urennorm']);
+        $naam           =   $db->escapeString($data['naam']);
+
+        $db->connect();
+        $tabelinfo = ['start'=>$start,'end'=>$end,'urennorm'=>$urennorm,'naam'=>$naam];
+        $db->insert('schooljaar',$tabelinfo);
+        return true;
 
     }
 
-    //The function returns the no. of business days between two dates and it skips the holidays
+    public function editYear($data)
+    {
+        $db = new Database();
+
+        $id             =   $db->escapeString($data['id']);
+        $start          =   $db->escapeString($data['start']);
+        $end            =   $db->escapeString($data['end']);
+        $urennorm       =   $db->escapeString($data['urennorm']);
+        $naam           =   $db->escapeString($data['naam']);
+
+        $db->connect();
+        $tabelinfo = ['']
+    }
+
+    // Haal het aantal werkdagen op, exclusief vakanties
     public function getWorkingDays($startDate, $endDate, $holidays)
     {
-        // do strtotime calculations just once
         $endDate = strtotime($endDate);
         $startDate = strtotime($startDate);
 
 
-        //The total number of days between the two dates. We compute the no. of seconds and divide it to 60*60*24
-        //We add one to inlude both dates in the interval.
+
         $days = ($endDate - $startDate) / 86400 + 1;
 
         $no_full_weeks = floor($days / 7);

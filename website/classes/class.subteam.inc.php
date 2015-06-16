@@ -115,14 +115,16 @@ class Subteam {
 		return "Docent verwijderd";
 	}
 
-/*	public function getSubTeamByLeader($userId){
+/*
+ 	public function getSubTeamByLeader($userId){
 		$sql = "SELECT * FROM `team` WHERE `idteamleider` = $userId";
 		$team=$this->query($sql);
 		foreach ($team as $row) {
 		$subteams= $this->getSubteams($row->id);
 		}
 		return $subteams;
-	}*/
+	}
+*/
 		
     public function getSubteam($subteamid){
         $db = new Database();

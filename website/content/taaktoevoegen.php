@@ -136,8 +136,7 @@ $taak = new Taak();
 
 
 </script>
-<style> .subteamselect { min-height:295px; } </style>
-<? 
+<?
 include(ROOT_WEBSITE."includes/footer.php");
 $document->close_body();
 $document->close_html();
