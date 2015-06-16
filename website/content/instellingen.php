@@ -22,24 +22,48 @@ $document->open_body();
     <div class="col-xs-12 col-md-3">
         <? include(ROOT_WEBSITE."includes/sidenav.php"); ?>
     </div>
-    <div class="col-md-9 col-xs-12">
+    <div class="col-md-9">
     <div class="content">
-        <h1 style="margin-top:0px;">Instellingen</h1>
-        <hr>
-        <form role="form" method="post" action="">
+        <div class="row">
+            <div class="col-md-7">
+            <legend>Jaartaak opgeven</legend>
+                <form method="post">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <label>Urennorm</label>
+                            <input type="text" class="form-control" name="urennorm" id="urennorm" placeholder="Urennorm"
+                        </div>
+                    </div>
+                    <div>
+                    <div class="row">
+                        <label></label>
+
+
+                    </div>
+                    </div>
+
+            </div>
+            <div class="col-md-5">
+                <legend>Subteam</legend>
+                <select name="subteam" class="subteamselect" style="width:250px;">
+                    <option id="" value=" ">Algemene taak</option>
+
+                    <?  foreach ($subteams as $row){?>
+                        <option id="<?=$row['id']?>" value="<?=$row['id']?>"><?=$row['subteamnaam']?></option>
+                    <?}?>
+                </select>
+                <div style = "margin-top:20px">
+                    <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span> Opslaan</button>
+                </div>
+            </div>
+
           <div class="form-group">
             <label for="urennorm">Urennorm</label>
             <div class="col-md-2" style="padding-right:5px;">
                 <input type="text" class="form-control" name="jaartaak" id="jaartaak" placeholder="Jaartaak uren">
             </div>
-            <div class="col-md-2" style="padding-left:5px; padding-right:5px;">
+            <div class="col-md-2">
                 <input type="text" class="form-control" name="weken" id="weken" placeholder="Weken">
-            </div>
-            <div class="col-md-3" style="padding-left:5px; padding-right:5px;">
-                <input type="text" class="form-control" name="tussenvoegsel" id="tussenvoegsel" placeholder="Tussenvoegsel">
-            </div>
-            <div class="col-md-3" style="padding-left:5px;">
-                <input type="text" class="form-control" name="achternaam" id="achternaam" placeholder="Achternaam">
             </div>
           </div>
             <div class="form-group">
@@ -56,18 +80,12 @@ $document->open_body();
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="row">
-                            <div class="col-md-8" style="padding-right:5px;">
-                                <input type="text" class="form-control" name="woonplaats" id="woonplaats" placeholder="Woonplaats">
-                            </div>
-                            <div class="col-md-4" style="padding-left:5px;">
-                                <input type="text" class="form-control" name="postcode" id="postcode" placeholder="Postcode">
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
         </form>
+
 
     </div>
     </div>
