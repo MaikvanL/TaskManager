@@ -85,7 +85,7 @@ if (isset($_GET["var2"])) {
 				?>
 					<tr class="row">
 						<td class="col-md-9 col-xs-6"><?=$row['teamnaam']?></td>
-						<td class="col-md-1 col-xs-2"><a href="<?=HTTP?>teamoverzicht/updatestatus/<?=$row['id']?>">
+						<td class="col-md-1 col-xs-2"><a href="<?=HTTP?>teamoverzicht/updatestatus/<?=$row['t_id']?>">
                                 <? if ($row['actief'] == "1"){
                                     print '<div style="width:20px; height:20px; background:#9FD495; border: 1px solid black;">&nbsp;</div>';
                                 }
@@ -94,8 +94,8 @@ if (isset($_GET["var2"])) {
                                 }
 
                                 ?></a></span></a></td>
-						<td class="col-md-1 col-xs-2"><a href="teaminzien/<?=$row['id']?>"><span class="glyphicon glyphicon-eye-open"></span></a></td>
-						<td class="col-md-1 col-xs-2"><a href="teamwijzigen/<?=$row['id']?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
+						<td class="col-md-1 col-xs-2"><a href="teaminzien/<?=$row['t_id']?>"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+						<td class="col-md-1 col-xs-2"><a href="teamwijzigen/<?=$row['t_id']?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
 					</tr>
 				<? } ?>
 				</tbody>

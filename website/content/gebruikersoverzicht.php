@@ -87,7 +87,7 @@ include(ROOT_WEBSITE."includes/header.php");
 						<td class="col-md-5 col-xs-8"><?=$row['voornaam']?> <?=$row['tussenvoegsel']?> <?=$row['achternaam']?></td>
 						<td class="col-md-3 col-xs-2"><?=$row['functie']?></td>
 						<td class="col-md-2 indienstneming"><?=$document->convertFromSQLDate($row['indienstneming'])?></td>
-						<td class="col-md-2 col-xs-2"><a href="<?=HTTP?>gebruikersoverzicht/updatestatus/<?=$row['id']?>">
+						<td class="col-md-2 col-xs-2"><a href="<?=HTTP?>gebruikersoverzicht/updatestatus/<?=$row['wn_id']?>">
 							<? if ($row['actief']== "1"){
 								print '<div style="width:20px; height:20px; background:#9FD495; border: 1px solid black;">&nbsp;</div>';
 								}
@@ -96,7 +96,7 @@ include(ROOT_WEBSITE."includes/header.php");
 								}
 								
 							?></a></td>
-						<td class="col-md-1 col-xs-2"><a href="gebruikerswijzigen/<?=$row['id']?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
+						<td class="col-md-1 col-xs-2"><a href="gebruikerswijzigen/<?=$row['wn_id']?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
 					</tr>
 				<? } ?>
 				</tbody>

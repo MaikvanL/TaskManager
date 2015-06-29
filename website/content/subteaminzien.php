@@ -21,7 +21,7 @@ if (isset($_GET['var2'])){
 }
 
 foreach ($huidigsubteam as $row) {
-
+print_r($row);
 ?>
 
 <div class="row">
@@ -39,7 +39,7 @@ foreach ($huidigsubteam as $row) {
                     <tr><td>Subteamleider: </td>
                         <td><?
                             $werknemer = new werknemer();
-                            $olv = $werknemer->getGebruiker($row['idopleidingsverantwoordelijke']);
+                            $olv = $werknemer->getGebruiker($row['olv_id']);
                             foreach ($olv as $verantwoordelijke) {
                                 print ($verantwoordelijke['voornaam'].' '.$verantwoordelijke['tussenvoegsel'].' '.$verantwoordelijke['achternaam']);
                             }
@@ -51,13 +51,15 @@ foreach ($huidigsubteam as $row) {
                     <div class="row">
                         <table class="col-md-12">
                         <?
-                            $leden = $subteam->getWerknemers($row['id']);
+                            $leden = $subteam->getWerknemers($row['st_id']);
+
                             foreach ($leden as $subteamlid) {
+                                print_r($subteamlid);
                                 ?>
 
                             <tr class="row">
-                                <td class="col-md-9"><?=$subteamlid['id']?> <?=$subteamlid['voornaam']?> <?=$subteamlid['tussenvoegsel']?> <?=$subteamlid['achternaam']?></td>
-                                <td class="col-md-3"><a href="<?=HTTP?>gebruikerswijzigen/<?=$subteamlid['werknemerid']?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                                <td class="col-md-9"><?=$subteamlid['wn_id']?> <?=$subteamlid['voornaam']?> <?=$subteamlid['tussenvoegsel']?> <?=$subteamlid['achternaam']?></td>
+                                <td class="col-md-3"><a href="<?=HTTP?>gebruikerswijzigen/<?=$subteamlid['wn_id']?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
                             </tr>
 
                         <?  } ?>
@@ -74,10 +76,6 @@ foreach ($huidigsubteam as $row) {
                                 $notInSubteam = $subteam->checkNotInSubteam($allUsers,$leden);
                                 print_r($notInSubteam);
                             ?>
-
-                             <select multiple="multiple" name="subteam" class="subteamselect" style="width:250px;">
-
-                             </select>
                         </div>
                     </div>
 

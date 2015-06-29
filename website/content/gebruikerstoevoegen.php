@@ -43,22 +43,22 @@ if (isset($_POST['aanhef'])){
 			    <label for="naam">Naam</label>
 			    <div class="row">
 			    	<div class="col-md-2" style="padding-right:5px;">
-			    		<select class="form-control" name="aanhef">
+			    		<select class="form-control" name="aanhef" required>
 			    			<option value="Dhr.">Dhr.</option>
 			    			<option value="Mvr.">Mvr.</option>
 			    		</select>
 			    	</div>
 			    	<div class="col-md-2" style="padding-left:5px; padding-right:5px;">
-			    		<input type="text" class="form-control" name="voorletters" id="voorletters" placeholder="Voorletters">
+			    		<input type="text" class="form-control" name="voorletters" id="voorletters" placeholder="Voorletters" required>
 			    	</div>
 			    	<div class="col-md-2" style="padding-left:5px; padding-right:5px;">
-					    <input type="text" class="form-control" name="voornaam" id="voornaam" placeholder="Voornaam">
+					    <input type="text" class="form-control" name="voornaam" id="voornaam" placeholder="Voornaam" required>
 			    	</div>
 			    	<div class="col-md-3" style="padding-left:5px; padding-right:5px;">
 					    <input type="text" class="form-control" name="tussenvoegsel" id="tussenvoegsel" placeholder="Tussenvoegsel">
 			    	</div>
 			    	<div class="col-md-3" style="padding-left:5px;">
-					    <input type="text" class="form-control" name="achternaam" id="achternaam" placeholder="Achternaam">
+					    <input type="text" class="form-control" name="achternaam" id="achternaam" placeholder="Achternaam" required>
 			    	</div>
 			    </div>
 			  </div>
@@ -68,20 +68,20 @@ if (isset($_POST['aanhef'])){
 			  		<div class="col-md-6">
 			  			<div class="row">
 					  		<div class="col-md-9" style="padding-right:5px;">
-					    		<input type="text" class="form-control" name="straat" id="straat" placeholder="Straatnaam">
+					    		<input type="text" class="form-control" name="straat" id="straat" placeholder="Straatnaam" required>
 					  		</div>
 					  		<div class="col-md-3" style="padding-left:5px;">
-					    		<input type="text" class="form-control" name="huisnummer" id="huisnummer" placeholder="Huisnr.">
+					    		<input type="text" class="form-control" name="huisnummer" id="huisnummer" placeholder="Huisnr." required>
 					  		</div>
 			  			</div>
 			  		</div>
 			  		<div class="col-md-6">
 				  		<div class="row">
 						  	<div class="col-md-8" style="padding-right:5px;">
-							  	<input type="text" class="form-control" name="woonplaats" id="woonplaats" placeholder="Woonplaats">
+							  	<input type="text" class="form-control" name="woonplaats" id="woonplaats" placeholder="Woonplaats" required>
 						  	</div>
 					  		<div class="col-md-4" style="padding-left:5px;">
-							  	<input type="text" class="form-control" name="postcode" id="postcode" placeholder="Postcode">		
+							  	<input type="text" class="form-control" name="postcode" id="postcode" placeholder="Postcode" required>
 					  		</div>
 				  		</div>
 			  		</div>
@@ -91,7 +91,7 @@ if (isset($_POST['aanhef'])){
 			  	<label for="werkgerelateerd">Werkgerelateerde informatie</label>
 			  	<div class="row">
 			  		<div class="col-md-4">
-					    <select class="form-control" name="functie">
+					    <select class="form-control" name="functie" required>
 					    	<option>- Selecteer je functie</option>
 					    	<option value="Docent" <? if ($row['functie']=="Docent"){ ?>selected<? } ?>>Docent</option>
 					    	<option value="Teamleider" <? if ($row['functie']=="Teamleider"){ ?>selected<? } ?>>Teamleider</option>
@@ -99,20 +99,20 @@ if (isset($_POST['aanhef'])){
 					    </select>
 			  		</div>
 			  		<div class="col-md-2">
-			  			<input type="text" id="werktijdfactor" class="form-control" name="werktijdfactor" placeholder="WTF">
+			  			<input type="text" id="werktijdfactor" class="form-control" name="werktijdfactor" placeholder="LTE" required>
 			  		</div>
 			  		<div class="col-md-3">
 			  			<input type="text" id="datepicker" class="form-control" name="indienstneming" placeholder="Datum indienstneming">
 			  		</div>
 			  		<div class="col-md-3">
-			  			<input type="text" id="emailadres" class="form-control" name="emailadres" placeholder="E-mailadres">
+			  			<input type="text" id="emailadres" class="form-control" name="emailadres" placeholder="E-mailadres" required>
 			  		</div>
 
 			  	</div>
 			  </div>
 			  <div class="form-group">
 			    <label for="exampleInputPassword1">Password</label>
-			    <input type="password" class="form-control" name="wachtwoord" id="exampleInputPassword1" placeholder="Password">
+			    <input type="password" class="form-control" name="wachtwoord" id="exampleInputPassword1" placeholder="Password" required>
 			  </div>
 			  <div class="checkbox">
 			    <label>

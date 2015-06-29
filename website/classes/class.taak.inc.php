@@ -30,19 +30,19 @@ class Taak {
         $lesuren        =   $db->escapeString($data['lesuren']);
 
         $db->connect();
-        $db->update('taken',array('subteam'=>$subteam,'code'=>$code,'soort'=>$soort,'naam'=>$naam, 'beschrijving'=>$beschrijving,'klokuren'=>$klokuren,'lesuren'=>$lesuren),'id = '.$id);
+        $db->update('taken',array('subteam'=>$subteam,'code'=>$code,'soort'=>$soort,'naam'=>$naam, 'beschrijving'=>$beschrijving,'klokuren'=>$klokuren,'lesuren'=>$lesuren),'tk_id = '.$id);
         return true;
     }
     public function deleteTask($taskid){
         $db = new Database();
         $db->connect();
-        $db->delete('taken','`id` = '.$taskid);
+        $db->delete('taken','`tk_id` = '.$taskid);
     }
 
     public function getTask($taskid){
         $db = new Database();
         $db->connect();
-        $db->select('taken','*',null,'`id` = '.$taskid);
+        $db->select('taken','*',null,'`tk_id` = '.$taskid);
         return $db->getResult();
     }
 

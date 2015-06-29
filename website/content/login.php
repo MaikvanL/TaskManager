@@ -34,9 +34,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 	if($count==1)
 	{	
-		$id=$row['id'];
+		$id=$row['wn_id'];
 		$userlevel=$row['userlevel'];
-		$sql="SELECT * FROM werknemer WHERE id='$id'";
+		$sql="SELECT * FROM werknemer WHERE wn_id='$id'";
 		$result=mysql_query($sql);
 		$results=mysql_fetch_array($result);
 		

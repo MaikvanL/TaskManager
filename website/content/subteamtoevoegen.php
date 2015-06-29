@@ -49,7 +49,7 @@ $teamresult = $team->alleTeams();
 			    	<div class="col-md-12">
 					    <select class="form-control" name="olv" id="olv" placeholder="Afdelingverantwoordelijke">
 						    <? foreach ($result as $row) { ?> 
-					    	<option value="<?=$row['id']?>"><?=$row['voornaam']?> <?=$row['tussenvoegsel']?> <?=$row['achternaam']?></option>
+					    	<option value="<?=$row['wn_id']?>"><?=$row['voornaam']?> <?=$row['tussenvoegsel']?> <?=$row['achternaam']?></option>
 					    	<? } ?>
 					    </select>
 			    	</div>
@@ -60,7 +60,7 @@ $teamresult = $team->alleTeams();
 					    <select class="form-control" name="team" id="team" placeholder="Team">
                             <option value="">Algemene taak</option>
 						    <? foreach ($teamresult as $teamrow) { ?> 
-					    	<option value="<?=$teamrow['id']?>"><?=$teamrow['teamnaam']?></option>
+					    	<option value="<?=$teamrow['t_id']?>"><?=$teamrow['teamnaam']?></option>
 					    	<? } ?>
 					    </select>
 			    	</div>

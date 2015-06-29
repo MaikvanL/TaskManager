@@ -64,7 +64,7 @@ include(ROOT_WEBSITE."includes/header.php");
 						<td class="col-md-2 col-xs-2"><?=$row['code']?></td>
 						<td class="col-md-2 col-xs-2"><? foreach ($st as $s){ echo ($s['subteamnaam']); } ?></td>
 						<td class="col-md-3 col-xs-2"><?=$row['beschrijving']?></td>
-						<td class="col-md-1 col-xs-2"><a href="taakwijzigen/<?=$row['id']?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
+						<td class="col-md-1 col-xs-2"><a href="taakwijzigen/<?=$row['tk_id']?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
 					</tr>
 				<? } ?>
 				</tbody>

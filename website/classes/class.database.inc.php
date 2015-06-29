@@ -120,10 +120,9 @@ class Database {
     public function usersInTeam($subteamid)
 
     {
-
-        $sql = 'SELECT werknemer.*, subteamdocenten.* FROM werknemer INNER JOIN subteamdocenten WHERE subteamdocenten.subteamid = $subteamid AND subteamdocenten.werknemerid = werknemer.id';
+        $sql = 'SELECT werknemer.*, subteamdocenten.* FROM werknemer INNER JOIN subteamdocenten WHERE subteamdocenten.st_id = '.$subteamid.' AND subteamdocenten.wn_id = werknemer.wn_id';
         $this->myQuery = $sql; // Query definen
-            $query = @mysql_query($q);
+            $query = @mysql_query($sql);
             if ($query) {
                 $this->numResults = mysql_num_rows($query);
                 for ($i = 0; $i < $this->numResults; $i++) {

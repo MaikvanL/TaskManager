@@ -109,7 +109,7 @@ $taak = new Taak();
                                 <option id="" value=" ">Algemene taak</option>
 
                                 <?  foreach ($subteams as $row){?>
-								<option id="<?=$row['id']?>" value="<?=$row['id']?>"><?=$row['subteamnaam']?></option>
+								<option id="<?=$row['st_id']?>" value="<?=$row['st_id']?>"><?=$row['subteamnaam']?></option>
 							<?}?>
 							</select>
 							<div style = "margin-top:20px">

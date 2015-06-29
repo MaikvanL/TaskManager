@@ -21,9 +21,12 @@
 				          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-list-alt"></span>&nbsp; Taakbeheer<span class="caret"></span></a>
 				          <ul class="dropdown-menu" role="menu">
 				            <li><a href="<?=HTTP?>taaktoevoegen"><span class="glyphicon glyphicon-plus"></span>&nbsp; Taak toevoegen</a></li>
-				            <li class="divider"></li>
 				            <li><a href="<?=HTTP?>taakoverzicht"><span class="glyphicon glyphicon-list-alt"></span>&nbsp; Taakoverzicht</a></li>
-				          </ul>
+                              <li class="divider"></li>
+                              <li><a href="<?=HTTP?>jaartoevoegen"><span class="glyphicon glyphicon-plus"></span>&nbsp; Schooljaar toevoegen</a></li>
+                              <li><a href="<?=HTTP?>jaaroverzicht"><span class="glyphicon glyphicon-list-alt"></span>&nbsp; Schooljaaroverzicht</a></li>
+
+                          </ul>
 				        </li>
 				       <li class="dropdown <? if (PAGINA_CATEGORIE == 'gebruiker') { echo 'active'; } ?>">
 				          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>&nbsp; Gebruikersbeheer<span class="caret"></span></a>

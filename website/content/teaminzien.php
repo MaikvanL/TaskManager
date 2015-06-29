@@ -23,7 +23,7 @@ if (isset($_GET['var2'])){
 foreach ($huidigteam as $row) {
 
     $werknemer = new Werknemer();
-    $teamleider = $werknemer->getGebruiker($row->idteamleider);
+    $teamleider = $werknemer->getGebruiker($row['tl_id']);
 
     foreach ($teamleider as $tl) {
 
@@ -40,8 +40,8 @@ foreach ($huidigteam as $row) {
 				<div class="col-md-6">
 					<h3>Team informatie</h3>
 					<hr>
-					<strong>Naam:</strong> <?=$row->teamnaam?><br>
-                    <strong>Teamleider:</strong> <?=$tl->voornaam?> <?=$tl->tussenvoegsel?> <?=$tl->achternaam?>
+					<strong>Naam:</strong> <?=$row['teamnaam']?><br>
+                    <strong>Teamleider:</strong> <?=$tl['voornaam']?> <?=$tl['tussenvoegsel']?> <?=$tl['achternaam']?>
 				</div>
 				<div class="col-md-6">
 					<h3>Onderdelen</h3>
@@ -57,8 +57,8 @@ foreach ($huidigteam as $row) {
 						foreach($subteams as $subteam){							
 							?> 
 							<tr class="row">
-								<td class="col-md-10"><?=$subteam->subteamnaam?></td>
-                                <td class="col-md-2"><a href="<?=HTTP?>subteamwijzigen/<?=$subteam->id?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
+								<td class="col-md-10"><?=$subteam['subteamnaam']?></td>
+                                <td class="col-md-2"><a href="<?=HTTP?>subteamwijzigen/<?=$subteam['st_id']?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
 							</tr>
 							<?
 						

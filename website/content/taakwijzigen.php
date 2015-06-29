@@ -1,6 +1,6 @@
 <?
-define("PAGINA_TITEL"		,	"Taaktoevoegen");
-define("PAGINA_NAAM"		,	"taaktoevoegen");
+define("PAGINA_TITEL"		,	"Taak wijzigen");
+define("PAGINA_NAAM"		,	"taakwijzigen");
 define("PAGINA_CATEGORIE"	, 	"taak");
 define("USER_LEVEL", 4);
 include(ROOT_WEBSITE."includes/header.php");
@@ -47,7 +47,7 @@ foreach($task as $taskrow){
 				<div class="col-md-7">
 					<legend>Taak wijzigen</legend>
 					<form method="post">
-					    <input name="id" type="hidden" value="<?=$taskrow['id']?>">
+					    <input name="id" type="hidden" value="<?=$taskrow['tk_id']?>">
 						<div class="row">
 							<div class="col-md-10">
 								<label>Code</label>
@@ -94,7 +94,7 @@ foreach($task as $taskrow){
 							<legend>Subteam</legend>
 							<select name="subteam" class="subteamselect" style="width:250px;">
 							<?  foreach ($subteams as $row){?>
-                            <option id="<?=$row['id']?>" value="<?=$row['id']?>" <? if ($row['id']== $taskrow['subteam']) { ?> selected <? } ?>><?=$row['subteamnaam']?></option>
+                            <option id="<?=$row['st_id']?>" value="<?=$row['st_id']?>" <? if ($row['id']== $taskrow['subteam']) { ?> selected <? } ?>><?=$row['subteamnaam']?></option>
     <?}?>
 							</select>
 							<div style = "margin-top:20px">

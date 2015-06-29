@@ -32,7 +32,7 @@ class Werknemer {
         $document = new document();
         $convertedDate = $document->convertToSQLdate($indienst);
 
-        $tableinfo = ['id'=>'','aanhef'=>$aanhef,'voorletters'=>$voorletters,'voornaam'=>$voornaam,'tussenvoegsel'=>$tussenvoegsel,'achternaam'=>$achternaam,'straat'=>$straat,'huisnummer'=>$huisnummer,'woonplaats'=>$woonplaats,'postcode'=>$postcode,'email'=>$email,'indienstneming'=>$convertedDate,'wtf'=>$wtf,'functie'=>$functie,'wachtwoord'=>$wachtwoord];
+        $tableinfo = ['wn_id'=>'','aanhef'=>$aanhef,'voorletters'=>$voorletters,'voornaam'=>$voornaam,'tussenvoegsel'=>$tussenvoegsel,'achternaam'=>$achternaam,'straat'=>$straat,'huisnummer'=>$huisnummer,'woonplaats'=>$woonplaats,'postcode'=>$postcode,'email'=>$email,'indienstneming'=>$convertedDate,'wtf'=>$wtf,'functie'=>$functie,'wachtwoord'=>$wachtwoord];
 
 		$execute = $db->insert('werknemer',$tableinfo);
 		if ($execute) { return true; }
@@ -64,7 +64,7 @@ class Werknemer {
         $tableinfo = ['aanhef'=>$aanhef,'voorletters'=>$voorletters,'voornaam'=>$voornaam,'tussenvoegsel'=>$tussenvoegsel,'achternaam'=>$achternaam,'straat'=>$straat,'huisnummer'=>$huisnummer,'woonplaats'=>$woonplaats,'postcode'=>$postcode,'email'=>$email,'indienstneming'=>$convertedDate,'wtf'=>$wtf,'functie'=>$functie];
         $db->connect();
 
-        $execute = $db->update('werknemer',$tableinfo,'`id`= '.$id);
+        $execute = $db->update('werknemer',$tableinfo,'`wn_id`= '.$id);
 		if ($execute) { return true; }
 		else { return false; }
 
@@ -74,7 +74,7 @@ class Werknemer {
 	public function toggleActive($werknemerId){
         $db = new Database();
         $db->connect();
-		$db->select('werknemer','actief',null,'`id`='.$werknemerId);
+		$db->select('werknemer','actief',null,'`wn_id`='.$werknemerId);
         $results = $db->getResult();
 
         foreach ($results as $result);
@@ -82,12 +82,12 @@ class Werknemer {
 
 		
 		if ($result==1) {
-			$db->update('werknemer',['actief'=>0],'`id` = '.$werknemerId);
+			$db->update('werknemer',['actief'=>0],'`wn_id` = '.$werknemerId);
 			$melding="Inactief";
 		}
 
 		if ($result==0) {
-            $db->update('werknemer',['actief'=>1],'`id` = '.$werknemerId);
+            $db->update('werknemer',['actief'=>1],'`wn_id` = '.$werknemerId);
 			$melding="Actief";
 
 		}
@@ -107,7 +107,7 @@ class Werknemer {
     {
         $db = new Database();
         $db->connect();
-        $db->select('werknemer', '*', null, '`id` ='.$werknemerId);
+        $db->select('werknemer', '*', null, '`wn_id` ='.$werknemerId);
         $result = $db->getResult();
         return $result;
     }

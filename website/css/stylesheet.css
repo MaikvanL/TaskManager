@@ -78,4 +78,7 @@ a { color:#64c371; }
 #confirm a          { padding:5px; border-radius:5px; background:#B0EC98; }
 #confirm a:hover    { background: red; }
 
+.center             { text-align: center; }
 .subteamselect      { min-height:295px; }
+.verdeling          { background: rgba(255,255,255,0.7); }
+.ureninput          { width:40px; }

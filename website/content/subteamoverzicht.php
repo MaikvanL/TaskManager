@@ -59,7 +59,7 @@ include(ROOT_WEBSITE."includes/header.php");
 						<td class="col-md-3 col-xs-3"><?=$row['subteamnaam']?></td>
 						<td class="col-md-2 col-xs-3">
 							<?
-								$teamresult = $team->getTeam($row['idteam']);
+								$teamresult = $team->getTeam($row['t_id']);
 
                             foreach ($teamresult as $teamdata) {
 
@@ -70,14 +70,14 @@ include(ROOT_WEBSITE."includes/header.php");
 							?>
 						</td>
 						<td class="col-md-4 col-xs-3"><? 
-							$olvresult = $werknemer->getGebruiker($row['idopleidingsverantwoordelijke']);
+							$olvresult = $werknemer->getGebruiker($row['olv_id']);
 							foreach ($olvresult as $olv) {							
 							?>
 							<?=$olv['voornaam']?> <?=$olv['tussenvoegsel']?> <?=$olv['achternaam']?>
 							<? } ?></td>
-						<td class="col-md-1 col-xs-2"><a href="?action=remove&id=<?=$row['id']?>"><span class="glyphicon glyphicon glyphicon-trash"></span></a></td>
-						<td class="col-md-1 col-xs-2"><a href="subteaminzien/<?=$row['id']?>"><span class="glyphicon glyphicon-eye-open"></span></a></td>
-						<td class="col-md-1 col-xs-2"><a href="subteamwijzigen/<?=$row['id']?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
+						<td class="col-md-1 col-xs-2"><a href="?action=remove&id=<?=$row['st_id']?>"><span class="glyphicon glyphicon glyphicon-trash"></span></a></td>
+						<td class="col-md-1 col-xs-2"><a href="subteaminzien/<?=$row['st_id']?>"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+						<td class="col-md-1 col-xs-2"><a href="subteamwijzigen/<?=$row['st_id']?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
 					</tr>
 				<? } ?>
 				</tbody>

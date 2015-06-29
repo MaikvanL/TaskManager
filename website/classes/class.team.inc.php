@@ -16,7 +16,7 @@ class Team
 
         $db->connect();
 
-        $execute = $db->insert('team',['id'=>null,'teamnaam'=>$naam,'idteamleider'=>$olv]);
+        $execute = $db->insert('team',['t_id'=>null,'teamnaam'=>$naam,'tl_id'=>$olv]);
         if ($execute) {
             return true;
         } else {
@@ -33,7 +33,7 @@ class Team
         $olv    = $db->escapeString($data['idteamleider']);
         $db->connect();
 
-        $execute = $db->update('team',['teamnaam'=>$naam,'idteamleider'=>$olv],'`id`='.$id);
+        $execute = $db->update('team',['teamnaam'=>$naam,'tl_id'=>$olv],'`t_id`='.$id);
         if ($execute) {
             return true;
         } else {
@@ -46,18 +46,18 @@ class Team
         $db = new Database();
         $db->connect();
 
-        $result = $db->select('team',null,'`id`='.$teamid);
+        $result = $db->select('team',null,'`t_id`='.$teamid);
         foreach ($result as $result)
             $result = $result->actief;
 
 
         if ($result == 1) {
-            $db->update('team',['actief'=>0],'`id` = '.$teamid);
+            $db->update('team',['actief'=>0],'`t_id` = '.$teamid);
             $melding = "Ik ben naar niet actief gezet";
         }
 
         if ($result == 0) {
-            $db->update('team',['actief'=>1],'`id` = '.$teamid);
+            $db->update('team',['actief'=>1],'`t_id` = '.$teamid);
             $melding = "Ik ben actief gezet";
 
         }
@@ -70,14 +70,15 @@ class Team
     public function alleTeams(){
         $db = new Database();
         $db->connect();
-        $alleteams = $db->select('team','*');
+        $db->select('team');
+        $alleteams = $db->getResult();
         return $alleteams;
     }
 
     public function getSubTeamByLeader($userId){
         $db = new Database();
         $db->connect();
-        $teamId = $db->select('team','id',null,'`idteamleider` = '.$userId);
+        $teamId = $db->select('team','t_id',null,'`tl_id` = '.$userId);
 
         foreach ($teamId as $row) {
             $subteams = $this->getSubteams($row->id);
@@ -89,7 +90,7 @@ class Team
     public function getSubteams($teamid){
         $db = new Database();
         $db->connect();
-        $db->select('subteam','*',null,'`idteam` = '.$teamid);
+        $db->select('subteam','*',null,'`t_id` = '.$teamid);
 
         return $db->getResult();
     }
@@ -98,7 +99,7 @@ class Team
     {
         $db = new Database();
         $db->connect();
-        $db->select('team','*',null,'`id` = '.$teamid);
+        $db->select('team','*',null,'`t_id` = '.$teamid);
         return $db->getResult();
 
     }
@@ -107,18 +108,19 @@ class Team
     {
         $db = new Database();
         $db->connect();
-        $result = $db->select('team', 'actief', null, 'id = '.$teamid);
+        $db->select('team', 'actief', null, 't_id = '.$teamid);
+        $result = $db->getResult();
         foreach ($result as $results) ;
-        $result = $results->actief;
+        $result = $results['actief'];
 
 
         if ($result == 1) {
-            $db->update('team', ['actief' => 0], '`id` = '.$teamid);
+            $db->update('team', ['actief' => 0], '`t_id` = '.$teamid);
             $melding = "inactief";
         }
 
         if ($result == 0) {
-            $db->update('team', ['actief' => 1], '`id` = '.$teamid);
+            $db->update('team', ['actief' => 1], '`t_id` = '.$teamid);
             $melding = "actief";
 
         }

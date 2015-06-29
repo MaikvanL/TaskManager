@@ -43,7 +43,7 @@ if (isset($_GET['var2'])){
 			<hr>
 			<form role="form" method="post" action="">
 			  <div class="form-group">
-			  	<input type="hidden" id="id" value="<?=$row['id']?>" name="id">
+			  	<input type="hidden" id="id" value="<?=$row['wn_id']?>" name="id">
 			    <label for="naam">Naam</label>
 			    <div class="row">
 			    	<div class="col-md-2" style="padding-right:5px;">

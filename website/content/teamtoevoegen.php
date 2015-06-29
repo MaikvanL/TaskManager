@@ -56,7 +56,7 @@ $result = $werknemer->alleGebruikers();
 			    	<div class="col-md-12">
 					    <select class="form-control" name="teamleider" id="teamleider">
 						    <? foreach ($result as $row) { ?> 
-					    	<option value="<?=$row->id?>"><?=$row->voornaam?> <?=$row->tussenvoegsel?> <?=$row->achternaam?></option>
+					    	<option value="<?=$row['wn_id']?>"><?=$row['voornaam']?> <?=$row['tussenvoegsel']?> <?=$row['achternaam']?></option>
 					    	<? } ?>
 					    </select>
 			    	</div>
