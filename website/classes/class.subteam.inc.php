@@ -140,14 +140,18 @@ class Subteam {
 
         $db = new Database();
         $db->connect();
-        $db->insert('subteamdocenten',['st_id'=>$subteamid,'wn_id'=>$werknemerid]);
-
+        $tabelinfo = ['st_id'=>$subteamid,'wn_id'=>$werknemerid];
+        $db->insert('subteamdocenten',$tabelinfo);
+        return true;
 
     }
 
     public function checkNotInSubteam($allUsers, $leden){
+        $notInSubteam = $allUsers;
+        foreach($leden as $lid){
+            $notInSubteam['wn_id'] - $lid['wn_id'];
+        }
 
-        $notInSubteam = ($allUsers - $leden['wn_id']);
 
         $diff = array_udiff($allUsers, $leden, $notInSubteam);
 

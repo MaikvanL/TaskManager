@@ -38,6 +38,17 @@ class School
 
     }
 
+    public function getCurYear(){
+        $db = new Database();
+        $db->select('schooljaar','*',null,'actief=1');
+        $result = $db->getResult();
+        foreach($result as $r){
+            $schooljaar_id = $r['schooljaar_id'];
+        }
+
+        return $schooljaar_id;
+    }
+
     public function editYear($data)
     {
         $db = new Database();
@@ -71,8 +82,7 @@ class School
         $db = new Database();
         $db->connect();
         $db->select('schooljaar', '*', null, '`schooljaar_id` ='.$year);
-        $result = $db->getResult();
-        return $result;
+        return $db->getResult();
     }
     public function getYearHolidays($year){
         $db = new Database();

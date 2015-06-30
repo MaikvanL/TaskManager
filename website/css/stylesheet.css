@@ -81,4 +81,5 @@ a { color:#64c371; }
 .center             { text-align: center; }
 .subteamselect      { min-height:295px; }
 .verdeling          { background: rgba(255,255,255,0.7); }
-.ureninput          { width:40px; }
+.ureninput          { width:50px; }
+.noborder           { border:none !important; }

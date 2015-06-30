@@ -46,11 +46,35 @@ class Taak {
         return $db->getResult();
     }
 
-    public function allTasks($subteam = null){
+    public function allTasks(){
         $db = new Database();
         $db->connect();
-        $db->select('taken','*',null,$subteam);
+        $db->select('taken','*');
+        return $db->getResult();
+    }
+    public function subteamTasks($subteam){
+        $db = new Database();
+        $db->connect();
+        $db->select('taken','*',null,'subteam = '.$subteam);
         return $db->getResult();
     }
 
+    public function getUserTaak($taakid,$userid){
+        $db = new Database();
+        $db->connect();
+        $db->select('taak_user','*',null,'tk_id = '.$taakid.' AND wn_id = '.$userid);
+        return $db->getResult();
+    }
+
+    public function getTotalAssigned($subteam,$user){
+        $sum = 0;
+        $db = new Database();
+        $db->connect();
+        $db->select('taak_user','*',null,'wn_id = '.$user.' AND st_id = '.$subteam);
+        $result = $db->getResult();
+        foreach ($result as $r){
+            $sum += $r['tu_taken'];
+        }
+        return $sum;
+    }
 }

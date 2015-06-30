@@ -16,6 +16,15 @@ $document->open_body();
 
 include(ROOT_WEBSITE."includes/header.php");
 
+$task = new Taak();
+$school = new School();
+$subteam = new Subteam();
+$werknemer = new Werknemer();
+
+$taken      = $task->subteamTasks($_GET['var2']);
+$curyear    = $school->getYear($_GET['var3']);
+$stdocenten = $subteam->getWerknemers($_GET['var2']);
+$curSubteam = $subteam->getSubteam($_GET['var2']);
 
 ?>
 
@@ -26,99 +35,80 @@ include(ROOT_WEBSITE."includes/header.php");
 	<div class="col-md-9 col-xs-12">
 		<div class="content">
 			<h1 style="margin-top:0px;">Taakverdeling</h1>
-			<? /*
-			if (isset($_GET["var2"])) {
-
-			if ($_GET['var2']=="updatestatus"){ ?> 
-				<div id="confirm">
-					<h4 style="text-align:center;">Weet je zeker dat je de status van deze gebruiker wilt wijzigen?</h4>
-					<div style="width:200px; margin:0 auto; text-align:center;">
-						<a style="padding:5px;" href="<?=HTTP?>gebruikersoverzicht/togglestatus/<?=$_GET['var3']?>">Ja</a> <a style="padding:5px;" href="<?=HTTP?>gebruikersoverzicht">Nee</a>
-					</div>
-				</div>
-			<? }
-			} */ ?>
-
+            <? foreach ($curSubteam as $cs) { ?>
+                <h4>Subteam: <?=$cs['subteamnaam']?></h4>
+                <?
+                $olvresult = $werknemer->getGebruiker($cs['olv_id']);
+                foreach ($olvresult as $olv) { ?>
+                    <h5>Opleidingverantwoordelijke: <?=$olv['voornaam']?> <?=$olv['tussenvoegsel']?> <?=$olv['achternaam']?></h5>
+                <? } ?>
+            <? } ?>
 			<hr>
 			<table class="table table-hover">
 				<thead>
-                <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th>To-do</th>
-                    <th class="verdeling">1659</th>
-                    <th class="verdeling">1659</th>
-                    <th class="verdeling">1161</th>
-                </tr>
-                <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th>Assigned</th>
-                    <th class="verdeling">1659</th>
-                    <th class="verdeling">1659</th>
-                    <th class="verdeling">1161</th>
-                </tr>
+                    <tr>
+                        <th class="noborder"></th>
+                        <th class="noborder"></th>
+                        <th class="noborder"></th>
+                        <th class="verdeling noborder">To-do</th>
+                        <? foreach ($stdocenten as $stdocent) {
+                             ?>
+                            <th class="verdeling noborder center"><? foreach($curyear as $cy) { echo($cy['urennorm']*$stdocent['wtf']); } ?></th>
+                        <? } ?>
+                    </tr>
+                    <tr>
+                        <th class="noborder"></th>
+                        <th class="noborder"></th>
+                        <th class="noborder"></th>
+                        <th class="verdeling noborder">Assigned</th>
+                        <? foreach ($stdocenten as $stdocent) { ?>
+                            <th class="verdeling noborder center"><? echo($task->getTotalAssigned($_GET['var2'],$stdocent['wn_id'])); ?></th>
+                        <? } ?>
+                    </tr>
 
-                <tr>
-                        <th>Taak</th>
-						<th>Code</th>
-                        <th>Opmerking</th>
-                        <th>Klokuren</th>
-                        <th class="verdeling">Huelbr</th>
-                        <th class="verdeling">Branre</th>
-                        <th class="verdeling">Schice</th>
-					</tr>
+                    <tr>
+                        <th class="noborder">Taak</th>
+                        <th class="noborder center">Code</th>
+                        <th class="noborder">Opmerking</th>
+                        <th class="noborder">Klokuren</th>
+                        <? foreach ($stdocenten as $stdocent) { ?>
+                            <th class="verdeling noborder"><?=$stdocent['afkorting']?></th>
+                        <? } ?>
+                    </tr>
 				</thead>
 				<tbody>
+                <? foreach ($taken as $taak) {?>
                     <tr>
-                        <td>Directe Onderwijstijd</td>
-                        <td>DOT</td>
-                        <td></td>
-                        <td></td>
-                        <td class="verdeling"><input class="ureninput" type="text"></td>
-                        <td class="verdeling"><input class="ureninput" type="text"></td>
-                        <td class="verdeling"><input class="ureninput" type="text"></td>
+                        <td><?=$taak['naam']?></td>
+                        <td class="center"><?=$taak['code']?></td>
+                        <td><?=$taak['beschrijving']?></td>
+                        <td><?=$taak['klokuren']?></td>
+                        <? foreach ($stdocenten as $stdocent) {
+                            $ut = $task->getUserTaak($taak['tk_id'],$stdocent['wn_id']);?>
+                            <td class="verdeling">
+                                <input class="ureninput"
+                                       type="number"
+                                       data-taak="<?=$taak['tk_id']?>"
+                                       data-leraar="<?=$stdocent['wn_id']?>"
+                                       value="<? if (!empty($ut)) { foreach($ut as $u) { print($u['tu_taken']); } }?>"
+                                    >
+                            </td>
+                        <? } ?>
                     </tr>
-                    <tr>
-                        <td>Voorbereiding & Nazorg</td>
-                        <td>VoNa</td>
-                        <td>50% van DOT</td>
-                        <td>0,5</td>
-                        <td class="verdeling"><input class="ureninput" type="text"></td>
-                        <td class="verdeling"><input class="ureninput" type="text"></td>
-                        <td class="verdeling"><input class="ureninput" type="text"></td>
-					</tr>
-                    <tr>
-                        <td>Intake</td>
-                        <td>INT</td>
-                        <td>1 KU per deelnemer</td>
-                        <td>30</td>
-                        <td class="verdeling"><input class="ureninput" type="text"></td>
-                        <td class="verdeling"><input class="ureninput" type="text"></td>
-                        <td class="verdeling"><input class="ureninput" type="text"></td>
-                    </tr>
-                    <tr>
-                        <td>Begeleiding individueel</td>
-                        <td>BEG.IND</td>
-                        <td>20-30 KU</td>
-                        <td>20</td>
-                        <td class="verdeling"><input class="ureninput" type="text"></td>
-                        <td class="verdeling"><input class="ureninput" type="text"></td>
-                        <td class="verdeling"><input class="ureninput" type="text"></td>
-                    </tr>
+                <? } ?>
+                </tbody>
+                <tfoot>
                     <tr>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td class="verdeling"><button type="button">Save</button></td>
-                        <td class="verdeling"><button type="button">Save</button></td>
-                        <td class="verdeling"><button type="button">Save</button></td>
+                        <? foreach ($stdocenten as $stdocent) { ?>
+                            <td class="verdeling"><button type="button" data-leraar="<?=$stdocent['wn_id']?>">Save</button></th>
+                        <? } ?>
                     </tr>
 
-                </tbody>
+                </tfoot>
 			</table>
 		</div>
 	</div>

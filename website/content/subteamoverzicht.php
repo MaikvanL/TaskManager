@@ -16,6 +16,9 @@ $document->load_stylesheets();
 $document->close_head();
 $document->open_body();
 
+$school = new School();
+$curYear = $school->getCurYear();
+
 
 include(ROOT_WEBSITE."includes/header.php");
 
@@ -76,7 +79,7 @@ include(ROOT_WEBSITE."includes/header.php");
 							<?=$olv['voornaam']?> <?=$olv['tussenvoegsel']?> <?=$olv['achternaam']?>
 							<? } ?></td>
 						<td class="col-md-1 col-xs-2"><a href="?action=remove&id=<?=$row['st_id']?>"><span class="glyphicon glyphicon glyphicon-trash"></span></a></td>
-						<td class="col-md-1 col-xs-2"><a href="subteaminzien/<?=$row['st_id']?>"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+						<td class="col-md-1 col-xs-2"><a href="taakverdeling/<?=$row['st_id']?>/<?=$curYear?>"><span class="glyphicon glyphicon-calendar"></span></a>&nbsp;&nbsp;&nbsp;<a href="subteaminzien/<?=$row['st_id']?>"><span class="glyphicon glyphicon-eye-open"></span></a></td>
 						<td class="col-md-1 col-xs-2"><a href="subteamwijzigen/<?=$row['st_id']?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
 					</tr>
 				<? } ?>

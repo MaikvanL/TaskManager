@@ -14,14 +14,30 @@ $document->close_head();
 $document->open_body();
 
 
+$subteam = new Subteam();
+$school = new School();
+
+
 include(ROOT_WEBSITE."includes/header.php");
 if (isset($_GET['var2'])){
-	$subteam = new Subteam();
 	$huidigsubteam = $subteam->getSubteam($_GET['var2']);
+}
+if (isset($_GET['var3'])){
+    if($_GET['var3'] == 'delete'){
+        $subteam->verwijderDocent($_GET['var4'],$_GET['var2']);
+    }
+}
+if (isset($_POST['subteamuser'])){
+    $addWerknemer = $subteam->addWerknemer($_POST['subteamuser'],$_GET['var2']);
+    if (!$addWerknemer){
+        $document->failed('Gebruiker','toegevoegd');
+    }
+    else {
+        $document->success('Gebruiker', 'toegevoegd');
+    }
 }
 
 foreach ($huidigsubteam as $row) {
-print_r($row);
 ?>
 
 <div class="row">
@@ -53,13 +69,11 @@ print_r($row);
                         <?
                             $leden = $subteam->getWerknemers($row['st_id']);
 
-                            foreach ($leden as $subteamlid) {
-                                print_r($subteamlid);
-                                ?>
+                            foreach ($leden as $subteamlid) { ?>
 
                             <tr class="row">
-                                <td class="col-md-9"><?=$subteamlid['wn_id']?> <?=$subteamlid['voornaam']?> <?=$subteamlid['tussenvoegsel']?> <?=$subteamlid['achternaam']?></td>
-                                <td class="col-md-3"><a href="<?=HTTP?>gebruikerswijzigen/<?=$subteamlid['wn_id']?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                                <td class="col-md-10"><?=$subteamlid['voornaam']?> <?=$subteamlid['tussenvoegsel']?> <?=$subteamlid['achternaam']?></td>
+                                <td class="col-md-2"><a href="<?=HTTP?>gebruikerswijzigen/<?=$subteamlid['wn_id']?>"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;&nbsp;<a href="<?=HTTP?>subteaminzien/<?=$_GET['var2']?>/delete/<?=$subteamlid['wn_id']?>"><span class="glyphicon glyphicon-remove"></span></a></td>
                             </tr>
 
                         <?  } ?>
@@ -69,13 +83,19 @@ print_r($row);
                     <div class="row">
                         <div class="col-md-12">
                             <h3 style="margin-top:0px;">Leden toevoegen</h3>
-                            <? print_r($leden); ?>
-                            <hr>
                             <?
                                 $allUsers = $werknemer->alleGebruikers();
-                                $notInSubteam = $subteam->checkNotInSubteam($allUsers,$leden);
-                                print_r($notInSubteam);
                             ?>
+                            <form method="post">
+                                <select name="subteamuser" class="userselect" style="width:250px;">
+                                    <?  foreach ($allUsers as $user){?>
+                                        <option id="<?=$user['wn_id']?>" value="<?=$user['wn_id']?>"><?=$user['voornaam']?> <?=$user['tussenvoegsel']?> <?=$user['achternaam']?></option>
+                                    <?}?>
+                                </select>
+                                <button type="submit" class="btn btn-default">Submit</button>
+
+                            </form>
+
                         </div>
                     </div>
 
@@ -87,6 +107,7 @@ print_r($row);
 </div>
 <? }?>
 <script>
+    $(function(){ $(".userselect").select2(); });
 	$(function(){ $("#datepicker").datepicker();  });
 </script>
 
